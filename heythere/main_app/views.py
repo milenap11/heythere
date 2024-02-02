@@ -1,5 +1,7 @@
 from django.shortcuts import render
 
+# Add here below list of employees dictionaries
+
 # Home view
 def home(request):
   # Include an .html file extension - unlike when rendering EJS templates
