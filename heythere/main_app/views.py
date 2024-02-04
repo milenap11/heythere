@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Employee
 
 # Add here below list of employees dictionaries
@@ -29,3 +30,15 @@ def employees_index(request):
 def employees_detail(request, employee_id):
   employee = Employee.objects.get(id=employee_id)
   return render(request, 'employees/detail.html', { 'employee': employee })
+
+class EmployeeCreate(CreateView):
+  model = Employee
+  fields = '__all__'
+
+class EmployeeUpdate(UpdateView):
+  model = Employee
+  fields = ['name', 'department', 'position', 'salary', 'birthdate']
+
+class EmployeeDelete(DeleteView):
+  model = Employee
+  success_url = '/employees'

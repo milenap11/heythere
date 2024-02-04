@@ -11,6 +11,10 @@
     <p>Salary: {{ employee.salary }}</p>
     <p>Birthdate: {{ employee.birthdate }}</p>
   </div>
+  <div class="card-action">
+    <a href="{% url 'employees_update' employee.id %}">Edit</a>
+    <a href="{% url 'employees_delete' employee.id %}">Delete</a>
+  </div>
 </div>
 
 {% endblock %}

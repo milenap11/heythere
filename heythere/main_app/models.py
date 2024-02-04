@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 class Employee(models.Model):
     # id = models.AutoField()
@@ -13,3 +14,9 @@ class Employee(models.Model):
     # pto_requests = models.ForeignKey('pto_requests')
     # manager_id = models.ForeignKey('Employee')
     # actual = models.CharField(max_length=3)
+
+    def __str__(self):
+        return self.name
+    
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'employee_id': self.id})
