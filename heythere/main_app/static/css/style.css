@@ -9,6 +9,26 @@ main {
 }
 
 footer.page-footer {
-  padding-top: 0;
+  padding: 1rem;
   text-align: right;
+}
+
+.brand-logo {
+  margin-left: 1rem;
+}
+
+.card-image {
+  height: 50%;
+}
+
+.card-content {
+  height: 50%;
+}
+
+.card-content p{
+  margin-bottom: 1rem;
+}
+
+.card {
+  border-radius: 5px;
 }

@@ -7,18 +7,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>heythere</title>
+  <link rel="icon" type="image/x-icon" href="/assets/logo.png">
+  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-  
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  
 </head>
-<body>
+<body class="indigo lighten-5">
   <header class="navbar-fixed">
     <nav>
-      <div class="nav-wrapper">
+      <div class="nav-wrapper grey darken-3">
         <ul>
-          <li><a href="{% url 'home' %}" class="left brand-logo">&nbsp;&nbsp;heythere</a></li>
+          <li><a href="{% url 'home' %}" class="left brand-logo"><img src="static/assets/logo.png">&nbsp;&nbsp;</a></li>
         </ul>
         <ul class="right">
           <li><a href="#">My Tools</a></li>
@@ -34,8 +35,8 @@
     {% block content %}
     {% endblock %}
   </main>
-  <footer class="page-footer">
-    <div class="right">All Rights Reserved, &copy; 2024 heythere &nbsp;</div>
+  <footer class="page-footer grey darken-3">
+    <div class="center">All Rights Reserved, &copy; 2024 heythere &nbsp;</div>
   </footer>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
