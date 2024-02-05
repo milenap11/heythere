@@ -5,11 +5,12 @@
 
 <div class="card">
   <div class="card-content">
-    <span class="card-title">{{ employee.name }}</span>
+    <span class="card-title">{{ employee.employee_name }}</span>
     <p>Department: {{ employee.department }}</p>
     <p>Position: {{ employee.position }}</p>
-    <p>Salary: {{ employee.salary }}</p>
+    <p>Salary: ${{ employee.salary }}</p>
     <p>Birthdate: {{ employee.birthdate }}</p>
+    <p>Manager: {{ manager.employee_name }}</p>
   </div>
   <div class="card-action">
     <a href="{% url 'employees_update' employee.id %}">Edit</a>
