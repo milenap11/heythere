@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Employee
+from .models import Employee, Event
 
 # Home view
 def home(request):
@@ -9,7 +9,10 @@ def home(request):
 
 # Events index view
 def events_index(request):
-  return render(request, 'events/index.html')
+  events = Event.objects.all()
+  return render(request, 'events/index.html', {
+    'events': events
+  })
 
 # Events detail view
 def events_detail(request, event_id):
