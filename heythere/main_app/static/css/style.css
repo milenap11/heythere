@@ -2,10 +2,12 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  
 }
 
 main {
   flex: 1 0 auto;
+  
 }
 
 footer.page-footer {
@@ -17,18 +19,23 @@ footer.page-footer {
   margin-left: 1rem;
 }
 
+/* No resp */
 .card-image {
   height: 50%;
 }
 
+/* No resp */
 .card-content {
   height: 50%;
 }
 
+/* No resp */
 .card-content p{
   margin-bottom: 1rem;
 }
 
+/* No resp */
 .card {
   border-radius: 5px;
 }
+
