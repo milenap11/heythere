@@ -7,17 +7,20 @@ def home(request):
   # Include an .html file extension - unlike when rendering EJS templates
   return render(request, 'home.html')
 
-# Tools view
-def tools(request):
-  return render(request, 'tools.html')
+# Events index view
+def events_index(request):
+  return render(request, 'events/index.html')
 
-# Events view
-def events(request):
-  return render(request, 'events.html')
+# Events detail view
+def events_detail(request, event_id):
+  event = Event.objects.get(id=event_id)
+  return render(request, 'events/detail.html', { 
+    'event': event, 
+  })
 
 # PTO Request view
-def pto_request(request):
-  return render(request, 'pto_request.html')
+# def pto_request(request):
+#   return render(request, 'pto_request.html')
 
 # Employees index view
 def employees_index(request):
