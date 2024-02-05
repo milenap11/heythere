@@ -9,4 +9,6 @@ urlpatterns = [
     path('employees/create/', views.EmployeeCreate.as_view(), name='employees_create'),
     path('employees/<int:pk>/update/', views.EmployeeUpdate.as_view(), name='employees_update'),
     path('employees/<int:pk>/delete/', views.EmployeeDelete.as_view(), name='employees_delete'),
+    path('pto_request/', views.pto_request, name='pto_request'),
+    path('tools/', views.tools, name='tools'),
 ]
