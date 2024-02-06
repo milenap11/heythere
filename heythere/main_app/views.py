@@ -16,8 +16,8 @@ def events(request):
   return render(request, 'events.html')
 
 # PTO Request view
-def pto_request(request):
-  return render(request, 'pto_request.html')
+def pto(request):
+  return render(request, 'pto.html')
 
 # Employees index view
 def employees_index(request):
