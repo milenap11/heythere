@@ -7,7 +7,10 @@ import os
 # Home view
 def home(request):
   # Include an .html file extension - unlike when rendering EJS templates
-  return render(request, 'home.html')
+  events = Event.objects.all()
+  return render(request, 'home.html', {
+    'events': events
+  })
 
 # Events index view
 # def events_index(request):

@@ -1,20 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Employee Details</h1>
-
-<div class="card">
-  <div class="card-content">
-    <span class="card-title">{{ employee.employee_name }}</span>
-    <p>Department: {{ employee.department }}</p>
-    <p>Position: {{ employee.position }}</p>
-    <p>Salary: ${{ employee.salary }}</p>
-    <p>Birthdate: {{ employee.birthdate }}</p>
-    <p>Manager: {{ manager.employee_name }}</p>
-  </div>
-  <div class="card-action">
+<h3 class="container section">Employee Details</h3>
+<div class="container">
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">{{ employee.employee_name }}</span>
+      <p>Department: {{ employee.department }}</p>
+      <p>Position: {{ employee.position }}</p>
+      <p>Salary: ${{ employee.salary }}</p>
+      <p>Birthdate: {{ employee.birthdate }}</p>
+      <p>Manager: {{ manager.employee_name }}</p>
+    </div>
+    <div class="card-action">
     <a href="{% url 'employees_update' employee.id %}">Edit</a>
     <a href="{% url 'employees_delete' employee.id %}">Delete</a>
+    </div>
   </div>
 </div>
 

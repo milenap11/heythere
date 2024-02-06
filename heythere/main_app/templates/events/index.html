@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}    
-<h1>Events List</h1>
+<h3 class="container section">Events List</h3>
 
 {% for event in events %}
+<div class="container">
   <div class="card">
     <div class="card-content">
     <span class="card-title">{{ event.name }}</span>
@@ -19,5 +20,6 @@
     <p>{{ event.localtime }}, {{ event.timezone }}</p>
     </div>
   </div>
+</div>  
 {% endfor %}
 {% endblock %}
