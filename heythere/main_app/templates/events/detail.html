@@ -18,6 +18,10 @@
     <p>{{ event.event_localdate }}</p>
     <p>{{ event.event_localtime }}, {{ event.event_timezone }}</p>
   </div>
+  <div class="card-action">
+    <a href="{% url 'events_update' event.id %}">Edit Event</a>
+    <a href="{% url 'events_delete' event.id %}">Delete Event</a>
+  </div>
 </div>
 
 {% endblock %}

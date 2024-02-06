@@ -82,6 +82,7 @@ class Event(models.Model):
     def __str__(self):
         return f"{self.event_name} in {self.event_city}, {self.event_state} {self.event_zip}"
     
+    #check this line for possible error
     def get_absolute_url(self):
         return reverse('events_detail', kwargs={'pk': self.id})
     
