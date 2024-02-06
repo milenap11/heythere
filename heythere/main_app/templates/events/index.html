@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}    
+<h1>Events List</h1>
+
+{% for event in events %}
+  <div class="card">
+    <div class="card-content">
+    <span class="card-title">{{ event.name }}</span>
+    <br>
+    <p style="text-decoration-line: underline;"><strong>LOCATION</strong></p>
+    <p>{{ event.venue }}</p>
+    <p>{{ event.city }}, {{ event.state }} {{ event.zip }}</p>
+    <!-- lat/long hopefully to be used for google maps later -->
+    <p>{{ event.latitude }}, {{ event.longitude }}</p>
+    <br>
+    <p style="text-decoration-line: underline;"><strong>DATE & TIME</strong></p>
+    <p>{{ event.localdate }}</p>
+    <p>{{ event.localtime }}, {{ event.timezone }}</p>
+    </div>
+  </div>
+{% endfor %}
+{% endblock %}
