@@ -10,31 +10,32 @@ def home(request):
   return render(request, 'home.html')
 
 # Events index view
-# def events_index(request):
-#   events = Event.objects.all()
-#   return render(request, 'events/index.html', {
-#     'events': events
-#   })
 def events_index(request):
   response = requests.get(f'https://app.ticketmaster.com/discovery/v2/events.json?city=Miami&apikey={os.environ["TICKETMASTER_APIKEY"]}')
-  eventList = []
   for i in range(len(response.json()['_embedded']['events'])):
-    eventDict = {}
     event = response.json()['_embedded']['events'][i]
-    eventDict['name'] = event['name']
-    eventDict['venue'] = event['_embedded']['venues'][0]['name']
-    eventDict['address'] = event['_embedded']['venues'][0]['address']['line1']
-    eventDict['city'] = event['_embedded']['venues'][0]['city']['name']
-    eventDict['state'] = event['_embedded']['venues'][0]['state']['stateCode']
-    eventDict['zip'] = event['_embedded']['venues'][0]['postalCode']
-    eventDict['latitude'] = event['_embedded']['venues'][0]['location']['latitude']
-    eventDict['longitude'] = event['_embedded']['venues'][0]['location']['longitude']
-    eventDict['localdate'] = event['dates']['start']['localDate']
-    eventDict['localtime'] = event['dates']['start']['localTime']
-    eventDict['timezone'] = event.get("dates").get('timezone')
-    eventList.append(eventDict)
+    if event.get('dates').get('timezone') == None:
+      tz = 'none specified'
+    else:
+      tz = event.get('dates').get('timezone')
+    new_event = Event(
+      id=i,
+      event_name=event['name'],
+      event_venue=event['_embedded']['venues'][0]['name'],
+      event_address=event['_embedded']['venues'][0]['address']['line1'],
+      event_city=event['_embedded']['venues'][0]['city']['name'],
+      event_state=event['_embedded']['venues'][0]['state']['stateCode'],
+      event_zip=event['_embedded']['venues'][0]['postalCode'],
+      event_latitude=event['_embedded']['venues'][0]['location']['latitude'],
+      event_longitude=event['_embedded']['venues'][0]['location']['longitude'],
+      event_localdate=event['dates']['start']['localDate'],
+      event_localtime=event['dates']['start']['localTime'],
+      event_timezone=tz
+    )
+    new_event.save()
+  events = Event.objects.all()
   return render(request, 'events/index.html', {
-    'events': eventList
+    'events': events
   })
 # Events detail view
 def events_detail(request, event_id):
