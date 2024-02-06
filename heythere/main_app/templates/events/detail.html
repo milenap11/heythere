@@ -27,6 +27,10 @@
       <p style="color: rgb(185, 184, 184)">Co-workers are attending!</p>
     </div>
   </div>
+  <div class="card-action">
+    <a href="{% url 'events_update' event.id %}">Edit Event</a>
+    <a href="{% url 'events_delete' event.id %}">Delete Event</a>
+  </div>
 </div>
 
 {% endblock %}
