@@ -2,43 +2,31 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  
+  font-family: 'Poppins', sans-serif;
 }
+
 
 main {
   flex: 1 0 auto;
-  
 }
+
 
 footer.page-footer {
   padding: 1rem;
   text-align: right;
 }
 
+
 .brand-logo {
   margin-left: 1rem;
 }
 
-/* No resp */
-.card-image {
-  height: 50%;
-}
-
-/* No resp */
-.card-content {
-  height: 50%;
-}
-
-/* No resp */
-.card-content p{
-  margin-bottom: 1rem;
-}
-
-/* No resp */
-.card {
+/* .card {
   border-radius: 5px;
-}
+} */
 
-h3 {
-  text-align: center;
-}
+/* .card-image {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+} */
+

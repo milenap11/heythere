@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}    
-<h1>Events List</h1>
+<h3 class="container section">Events List</h3>
 
 {% for event in events %}
 <a href="{% url 'events_create' %}">Add an Event</a>
+<div class="container">
   <div class="card">
     <a href="{% url 'events_detail' event.id %}">
-        <div class="card-content">
+        
             <span class="card-title">{{ event.event_name }}</span>
             <br>
             <p style="text-decoration-line: underline;"><strong>LOCATION</strong></p>
@@ -18,8 +19,9 @@
             <p>{{ event.event_localdate }}</p>
             <p>{{ event.event_localtime }}</p>
             <p>Local timezone: {{ event.event_timezone }}</p>
-        </div>
+        
     </a>
   </div>
+</div>  
 {% endfor %}
 {% endblock %}

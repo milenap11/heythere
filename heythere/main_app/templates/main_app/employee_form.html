@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="container">
     {% if object %}
         <h1>Edit <span class="teal-text">{{object.employee_name}}</span></h1>
     {% else %}
-        <h1>Add Employee</h1>
+        <h3>Add Employee</h3>
     {% endif %}
 
     <form action="" method="POST">
@@ -12,6 +13,9 @@
         <table>
         {{ form.as_table }}
         </table>
+        <div class="card-action">
         <input type="submit" value="Submit!" class="btn">
+        </div>
     </form>
+</div>    
 {% endblock %}
