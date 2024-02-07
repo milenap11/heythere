@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Employee, Event, PTO_request
 import requests
@@ -34,7 +34,8 @@ def events_seed(request):
       event_longitude=event['_embedded']['venues'][0]['location']['longitude'],
       event_localdate=event['dates']['start']['localDate'],
       event_localtime=event['dates']['start']['localTime'],
-      event_timezone=tz
+      event_timezone=tz,
+      event_img_url=event['images'][0]['url']
     )
     new_event.save()
   events = Event.objects.all()
@@ -83,6 +84,10 @@ def employees_detail(request, employee_id):
     'employee': employee,
     'manager': manager 
   })
+
+# def assoc_event(request, employee_id, event_id):
+#   Employee.objects.get(id=employee_id).attending_events.add(event_id)
+#   return redirect('events_detail', event_id=event_id)
 
 class EmployeeCreate(CreateView):
   model = Employee

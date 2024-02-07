@@ -78,6 +78,7 @@ class Event(models.Model):
     event_localdate = models.DateField()
     event_localtime = models.TimeField()
     event_timezone = models.CharField(max_length=100)
+    event_img_url = models.TextField(default='#')
 
     def __str__(self):
         return f"{self.event_name} in {self.event_city}, {self.event_state} {self.event_zip}"
