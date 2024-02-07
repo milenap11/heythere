@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}  
 <br>
-<div class="center"> <a class="waves-effect waves-light btn" href="{% url 'employees_create' %}">Add PTO Request</a></div>
+<div class="center"> <a class="waves-effect waves-light btn indigo darken-1" href="{% url 'employees_create' %}">Add PTO Request</a></div>
+<br>
 <h3 class="container section">PTO Request</h3>
 {% for pto_request in pto_requests %}
 <div class="container">
