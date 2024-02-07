@@ -4,5 +4,5 @@ const instanceDropdown = M.Dropdown.init(elemsDropdown, {
 });
 elemsSidenav = document.querySelectorAll(".sidenav");
 const instanceSidenav = M.Sidenav.init(elemsSidenav, {
-  edge: "left"
+  edge: "right"
 });
