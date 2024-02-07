@@ -12,17 +12,18 @@ def home(request):
     'events': events
   })
 
-# Events index view
-def events_index(request):
+#to seed with events from ticketmaster api
+def events_seed(request):
+  Event.objects.all().delete()
   response = requests.get(f'https://app.ticketmaster.com/discovery/v2/events.json?city=Miami&apikey={os.environ["TICKETMASTER_APIKEY"]}')
-  for i in range(len(response.json()['_embedded']['events'])):
-    event = response.json()['_embedded']['events'][i]
+  events_list_api = response.json()['_embedded']['events']
+  for i in range(len(events_list_api)):
+    event = events_list_api[i]
     if event.get('dates').get('timezone') == None:
       tz = 'none specified'
     else:
       tz = event.get('dates').get('timezone')
     new_event = Event(
-      id=i,
       event_name=event['name'],
       event_venue=event['_embedded']['venues'][0]['name'],
       event_address=event['_embedded']['venues'][0]['address']['line1'],
@@ -36,6 +37,13 @@ def events_index(request):
       event_timezone=tz
     )
     new_event.save()
+  events = Event.objects.all()
+  return render(request, 'events/index.html', {
+    'events': events
+  })
+
+# Events index view
+def events_index(request):
   events = Event.objects.all()
   return render(request, 'events/index.html', {
     'events': events

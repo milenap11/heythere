@@ -8,6 +8,7 @@ urlpatterns = [
     path('events/create/', views.EventCreate.as_view(), name='events_create'),
     path('events/<int:pk>/update/', views.EventUpdate.as_view(), name='events_update'),
     path('events/<int:pk>/delete/', views.EventDelete.as_view(), name='events_delete'),
+    path('events/seed/', views.events_seed, name='events_seed'),
     path('employees/', views.employees_index, name='index'),
     path('employees/<int:employee_id>/', views.employees_detail, name='detail'),
     path('employees/create/', views.EmployeeCreate.as_view(), name='employees_create'),

@@ -8,18 +8,16 @@
 <div class="container">
   <div class="card">
     <a href="{% url 'events_detail' event.id %}">
-        
-            <span class="card-title">{{ event.event_name }}</span>
-            <br>
-            <p style="text-decoration-line: underline;"><strong>LOCATION</strong></p>
-            <p>{{ event.event_venue }}</p>
-            <p>{{ event.event_city }}, {{ event.event_state }}</p>
-            <br>
-            <p style="text-decoration-line: underline;"><strong>DATE & TIME</strong></p>
-            <p>{{ event.event_localdate }}</p>
-            <p>{{ event.event_localtime }}</p>
-            <p>Local timezone: {{ event.event_timezone }}</p>
-        
+        <span class="card-title">{{ event.event_name }}</span>
+        <br>
+        <p style="text-decoration-line: underline;"><strong>LOCATION</strong></p>
+        <p>{{ event.event_venue }}</p>
+        <p>{{ event.event_city }}, {{ event.event_state }}</p>
+        <br>
+        <p style="text-decoration-line: underline;"><strong>DATE & TIME</strong></p>
+        <p>{{ event.event_localdate }}</p>
+        <p>{{ event.event_localtime }}</p>
+        <p>Local timezone: {{ event.event_timezone }}</p>
     </a>
   </div>
 </div>  
