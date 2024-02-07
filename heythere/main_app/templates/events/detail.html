@@ -6,7 +6,7 @@
   <div class="card">
     <div class="hoverable">
       <div class="card-image">
-      <img src="/static/assets/image.jpg">
+      <img src="{{ event.event_img_url }}">
       <a href="#" class="halfway-fab btn-floating pink pulse">
       <i class="material-icons">favorite</i></a>
       </div>
@@ -29,6 +29,7 @@
     </div>
   </div>
   <div class="card-action">
+    <a href="#">Reserve</a>
     <a href="{% url 'events_update' event.id %}">Edit Event</a>
     <a href="{% url 'events_delete' event.id %}">Delete Event</a>
   </div>

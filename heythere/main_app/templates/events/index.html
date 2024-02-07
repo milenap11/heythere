@@ -27,12 +27,7 @@
         <p>{{ event.event_localtime }}</p>
         <p>Local timezone: {{ event.event_timezone }}</p>
         <br>
-        <!-- <p>Testing out number of attendees: {{ event.employees.all|length }}</p> -->
-        <p style="color: rgb(185, 184, 184)">Co-workers are attending!</p>
-        <!-- <form action="{% url 'assoc_event' employee.id event.id %}" method="POST">
-          {% csrf_token %}
-          <button type="submit" class="btn">Attend this Event</button>
-        </form> -->
+       
       </div>
         <div class="card-action">
           <a href="{% url 'events_detail' event.id %}">View</a>
