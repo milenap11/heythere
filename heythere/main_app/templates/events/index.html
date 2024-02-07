@@ -8,28 +8,28 @@
   <div class="card">
     <div class="hoverable">
       <div class="card-image">
-      <img src="/static/assets/image.jpg">
-      <a href="#" class="halfway-fab btn-floating pink pulse">
-      <i class="material-icons">favorite</i>
-      </a>
+        <img src="{{ event.event_img_url }}">
+        <a href="#" class="halfway-fab btn-floating pink pulse">
+        <i class="material-icons">favorite</i>
+        </a>
       </div>
       <div class="card-content">  
-            <span class="card-title">{{ event.event_name }}</span>
-            <br>
-            <p style="text-decoration-line: underline;"><strong>LOCATION</strong></p>
-            <p>{{ event.event_venue }}</p>
-            <p>{{ event.event_city }}, {{ event.event_state }}</p>
-            <br>
-            <p style="text-decoration-line: underline;"><strong>DATE & TIME</strong></p>
-            <p>{{ event.event_localdate }}</p>
-            <p>{{ event.event_localtime }}</p>
-            <p>Local timezone: {{ event.event_timezone }}</p>
-            <br>
-            <p style="color: rgb(185, 184, 184)">Co-workers are attending!</p>
-          </div>
-            <div class="card-action">
-            <a href="{% url 'events_detail' event.id %}">View</a>
-            </div>
+        <span class="card-title">{{ event.event_name }}</span>
+        <br>
+        <p style="text-decoration-line: underline;"><strong>LOCATION</strong></p>
+        <p>{{ event.event_venue }}</p>
+        <p>{{ event.event_city }}, {{ event.event_state }}</p>
+        <br>
+        <p style="text-decoration-line: underline;"><strong>DATE & TIME</strong></p>
+        <p>{{ event.event_localdate }}</p>
+        <p>{{ event.event_localtime }}</p>
+        <p>Local timezone: {{ event.event_timezone }}</p>
+        <br>
+        <p style="color: rgb(185, 184, 184)">Co-workers are attending!</p>
+      </div>
+        <div class="card-action">
+          <a href="{% url 'events_detail' event.id %}">View</a>
+        </div>
       </div>
     </div> 
   </div>
