@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h3 class="container section">PTO Request Details</h3>
+<div class="container">
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">{{ object.employee_name }}</span>
+        <p>Status: {{ employee.department }}</p>
+        <p>Employee: {{ employee.position }}</p>
+        <p>Start Date: {{ employee.position }}</p>
+        <p>End Date: {{ employee.position }}</p>
+    </div>
+    <div class="card-action">
+    <a href="#">Edit</a>
+    <a href="#">Delete</a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
