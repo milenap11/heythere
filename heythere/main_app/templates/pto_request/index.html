@@ -3,12 +3,14 @@
 
 <h3 class="container section">PTO Request</h3>
 
-{% for PTO_request in PTO_requests %}
+{% for pto_request in pto_requests %}
 <div class="container">
   <div class="card">
       <div class="card-content">
-        <span class="card-title">PTO request for {{ object.employee_name }}</span>
-        <p>Status: {{ employee.department }}</p>
+        <span class="card-title">PTO request for {{ pto_request.employee_name }}</span>
+        <p>Status: {{ pto_request.status }}</p>
+        <p>Start Date: {{ pto_request.start_date }}</p>
+        <p>End Date: {{ pto_request.end_date }}</p>
       </div>
       <div class="card-action">
       <a href="#">View</a>

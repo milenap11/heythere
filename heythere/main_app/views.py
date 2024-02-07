@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Employee, Event
+from .models import Employee, Event, PTO_request
 import requests
 import os
 
@@ -43,6 +43,13 @@ def events_seed(request):
     'events': events
   })
 
+# Test pto_request objects
+pto_requests = [
+  {'employee_name': 'Milena', 'status': 'P', 'start_date': '2024-02-07', 'end_date': '2024-2-10'},
+  {'employee_name': 'Jason', 'status': 'A', 'start_date': '2024-02-08', 'end_date': '2024-02-13'},
+  {'employee_name': 'Jae', 'status': 'D', 'start_date': '2024-02-10', 'end_date': '2024-02-11'},
+]
+
 # Events index view
 def events_index(request):
   events = Event.objects.all()
@@ -56,9 +63,12 @@ def events_detail(request, event_id):
     'event': event, 
   })
 
-# PTO Request view
-# def pto_request(request):
-#   return render(request, 'pto_request.html')
+# PTO Request index view
+def pto_request_index(request):
+  # pto_requests = PTO_request.objects.all()
+  return render(request, 'pto_request/index.html', {
+    'pto_requests': pto_requests
+  })
 
 # Employees index view
 def employees_index(request):
