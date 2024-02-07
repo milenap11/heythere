@@ -3,6 +3,9 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Employee, Event, PTO_request
 import requests
 import os
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 
 # Home view
 def home(request):
@@ -11,6 +14,21 @@ def home(request):
   return render(request, 'home.html', {
     'events': events
   })
+
+def signup(request):
+  error_message = ''
+  if request.method == 'POST':
+    form = UserCreationForm(request.POST)
+    if form.is_valid():
+      user = form.save()
+      login(request, user)
+      return redirect('index')
+    else:
+      error_message = 'Invalid sign up - try again'
+  form = UserCreationForm()
+  context = {'form': form, 'error_message': error_message}
+  return render(request, 'registration/signup.html', context)
+
 
 #to seed with events from ticketmaster api
 def events_seed(request):
@@ -56,6 +74,7 @@ def events_index(request):
   return render(request, 'events/index.html', {
     'events': events
   })
+
 # Events detail view
 def events_detail(request, event_id):
   event = Event.objects.get(id=event_id)
@@ -91,11 +110,14 @@ def employees_detail(request, employee_id):
 
 class EmployeeCreate(CreateView):
   model = Employee
-  fields = '__all__'
+  fields = ['employee_name', 'department', 'position', 'salary', 'birthdate', 'manager_id']
+  def form_valid(self, form):
+    form.instance.user = self.request.user
+    return super().form_valid(form)
 
 class EmployeeUpdate(UpdateView):
   model = Employee
-  fields = ['employee_name', 'department', 'position', 'salary', 'birthdate']
+  fields = ['employee_name', 'department', 'position', 'salary', 'birthdate', 'manager_id']
 
 class EmployeeDelete(DeleteView):
   model = Employee

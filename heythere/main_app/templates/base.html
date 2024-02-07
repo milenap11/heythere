@@ -33,11 +33,17 @@
         <!-- Logo -->
         <a href="{% url 'home' %}" class="brand-logo"><img src="/static/assets/logo.png">&nbsp;&nbsp;</a>
         
-        <ul id="navbar-items" class="right hide-on-med-and-down">
+        <ul id="navbar-items" class="right">
+        {% if user.is_authenticated %}
           <li><a class="dropdown-trigger" href="https://slack.com/workspace-signin" data-target="dropdown-menu">My Tools<i class="material-icons right">arrow_drop_down</i></a></li>
           <li><a href="{% url 'events_index' %}">Events</a></li>
           <li><a href="{% url 'index' %}">Employees</a></li>
           <li><a href="{% url 'pto_request_index' %}">PTO Request</a></li>
+          <li><a href="{% url 'logout' %}">Log Out</a></li>
+        {% else %}
+          <li><a href="{% url 'signup' %}">Sign Up</a></li>
+          <li><a href="{% url 'login' %}">Log In</a></li>
+        {% endif %}
         </ul>
 
        <!-- Mobile side menu -->

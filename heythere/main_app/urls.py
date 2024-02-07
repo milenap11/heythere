@@ -16,4 +16,5 @@ urlpatterns = [
     path('employees/<int:pk>/update/', views.EmployeeUpdate.as_view(), name='employees_update'),
     path('employees/<int:pk>/delete/', views.EmployeeDelete.as_view(), name='employees_delete'),
     path('pto_requests/', views.pto_request_index, name='pto_request_index'),
+    path('accounts/signup/', views.signup, name='signup'),
 ]
