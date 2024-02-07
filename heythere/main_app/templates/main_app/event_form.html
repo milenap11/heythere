@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="container">
     {% if object %}
-    <h1>Edit Event<span class="teal-text">{{object.name}}</span></h1>
+    <h3>Edit <span class="teal-text">{{object.event_name}}</span></h3>
     {% else %}
-    <h1>Add Event</h1>
+    <h3>Add Event</h3>
     {% endif %}
   <form action="" method="POST">
     {% csrf_token %}
@@ -13,4 +14,5 @@
     </table>
     <input type="submit" value="Submit Event" class="btn">
   </form>
+</div>  
 {% endblock %}
