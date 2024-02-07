@@ -6,10 +6,13 @@ body {
 }
 
 
-main {
+/* main {
   flex: 1 0 auto;
-}
+} */
 
+.btn {
+  justify-content: center;
+}
 
 footer.page-footer {
   padding: 1rem;
