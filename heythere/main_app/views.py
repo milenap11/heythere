@@ -44,7 +44,9 @@ def events_seed(request):
 
 # Test pto_request objects
 pto_requests = [
-  {'status': 'P', 'start_date': 2024-2-4, 'end_date': 2024-2-7},
+  {'employee_name': 'Milena', 'status': 'P', 'start_date': '2024-02-07', 'end_date': '2024-2-10'},
+  {'employee_name': 'Jason', 'status': 'A', 'start_date': '2024-02-08', 'end_date': '2024-02-13'},
+  {'employee_name': 'Jae', 'status': 'D', 'start_date': '2024-02-10', 'end_date': '2024-02-11'},
 ]
 
 # Events index view

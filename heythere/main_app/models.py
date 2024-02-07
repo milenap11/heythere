@@ -105,6 +105,7 @@ class Employee(models.Model):
         return reverse('detail', kwargs={'employee_id': self.id})
     
 class PTO_request(models.Model):
+    employee_name = models.CharField(max_length=100)
     status = models.CharField(
         max_length=1,
         choices=STATUS,
