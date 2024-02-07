@@ -44,9 +44,9 @@ def events_seed(request):
 
 # Test pto_request objects
 pto_requests = [
-  {'employee_name': 'Milena', 'status': 'P', 'start_date': '2024-02-07', 'end_date': '2024-2-10'},
-  {'employee_name': 'Jason', 'status': 'A', 'start_date': '2024-02-08', 'end_date': '2024-02-13'},
-  {'employee_name': 'Jae', 'status': 'D', 'start_date': '2024-02-10', 'end_date': '2024-02-11'},
+  {'employee_name': 'Milena', 'status': 'P', 'start_date': '2024-02-07', 'end_date': '2024-2-10', 'employee': 1},
+  {'employee_name': 'Jason', 'status': 'A', 'start_date': '2024-02-08', 'end_date': '2024-02-13', 'employee': 2},
+  {'employee_name': 'Jae', 'status': 'D', 'start_date': '2024-02-10', 'end_date': '2024-02-11', 'employee': 3},
 ]
 
 # Events index view
@@ -64,9 +64,11 @@ def events_detail(request, event_id):
 
 # PTO Request index view
 def pto_request_index(request):
-  # pto_requests = PTO_request.objects.all()
+  pto_requests = PTO_request.objects.all()
+  employee = Employee.objects.get(id = pto_requests.employee)
   return render(request, 'pto_request/index.html', {
-    'pto_requests': pto_requests
+    'pto_requests': pto_requests,
+    'employee': employee
   })
 
 # Employees index view
