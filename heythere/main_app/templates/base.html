@@ -39,7 +39,12 @@
           <li><a href="{% url 'events_index' %}">Events</a></li>
           <li><a href="{% url 'index' %}">Employees</a></li>
           <li><a href="{% url 'pto_request_index' %}">PTO Request</a></li>
-          <li><a href="{% url 'logout' %}">Log Out</a></li>
+          <li>
+            <form method="POST" action="{% url 'logout' %}">
+              {% csrf_token %}
+              <button type="submit">Log Out</button>
+            </form>
+          </li>
         {% else %}
           <li><a href="{% url 'signup' %}">Sign Up</a></li>
           <li><a href="{% url 'login' %}">Log In</a></li>
