@@ -1,11 +1,14 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Employee, Event, PTO_request
+from .forms import CustomUserForm
 import requests
 import os
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
 
 # Home view
 def home(request):
@@ -18,19 +21,28 @@ def home(request):
 def signup(request):
   error_message = ''
   if request.method == 'POST':
-    form = UserCreationForm(request.POST)
-    if form.is_valid():
+    form = CustomUserForm(request.POST)
+    employees = Employee.objects.all()
+    users = User.objects.all()
+    email_list = []
+    username_list = []
+    for user in users:
+      username_list.append(user)
+    for employee in employees:
+      email_list.append(employee.employee_email)
+    if form.is_valid() and request.POST['email'] in email_list and request.POST['username'] not in username_list:
       user = form.save()
       login(request, user)
       return redirect('index')
     else:
-      error_message = 'Invalid sign up - try again'
-  form = UserCreationForm()
+      error_message = 'Invalid input. Either your username has already been taken, or your email did not match a valid employee email. Try again.'
+  form = CustomUserForm()
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
 
 
 #to seed with events from ticketmaster api
+@login_required
 def events_seed(request):
   Event.objects.all().delete()
   response = requests.get(f'https://app.ticketmaster.com/discovery/v2/events.json?city=Miami&apikey={os.environ["TICKETMASTER_APIKEY"]}')
@@ -69,6 +81,7 @@ pto_requests = [
 ]
 
 # Events index view
+@login_required
 def events_index(request):
   events = Event.objects.all()
   return render(request, 'events/index.html', {
@@ -76,6 +89,7 @@ def events_index(request):
   })
 
 # Events detail view
+@login_required
 def events_detail(request, event_id):
   event = Event.objects.get(id=event_id)
   return render(request, 'events/detail.html', { 
@@ -83,6 +97,7 @@ def events_detail(request, event_id):
   })
 
 # PTO Request index view
+@login_required
 def pto_request_index(request):
   # pto_requests = PTO_request.objects.all()
   return render(request, 'pto_request/index.html', {
@@ -90,12 +105,14 @@ def pto_request_index(request):
   })
 
 # Employees index view
+@login_required
 def employees_index(request):
   employees = Employee.objects.all()
   return render(request, 'employees/index.html', {
     'employees': employees
   })
 
+@login_required
 def employees_detail(request, employee_id):
   employee = Employee.objects.get(id=employee_id)
   manager = Employee.objects.get(id=employee.manager_id)
@@ -108,29 +125,29 @@ def employees_detail(request, employee_id):
 #   Employee.objects.get(id=employee_id).attending_events.add(event_id)
 #   return redirect('events_detail', event_id=event_id)
 
-class EmployeeCreate(CreateView):
+class EmployeeCreate(LoginRequiredMixin, CreateView):
   model = Employee
   fields = ['employee_name', 'department', 'position', 'salary', 'birthdate', 'manager_id']
   def form_valid(self, form):
     form.instance.user = self.request.user
     return super().form_valid(form)
 
-class EmployeeUpdate(UpdateView):
+class EmployeeUpdate(LoginRequiredMixin, UpdateView):
   model = Employee
   fields = ['employee_name', 'department', 'position', 'salary', 'birthdate', 'manager_id']
 
-class EmployeeDelete(DeleteView):
+class EmployeeDelete(LoginRequiredMixin, DeleteView):
   model = Employee
   success_url = '/employees'
 
-class EventCreate(CreateView):
+class EventCreate(LoginRequiredMixin, CreateView):
   model = Event
   fields = '__all__'
 
-class EventUpdate(UpdateView):
+class EventUpdate(LoginRequiredMixin, UpdateView):
   model = Event
   fields = '__all__'
 
-class EventDelete(DeleteView):
+class EventDelete(LoginRequiredMixin, DeleteView):
   model = Event
   success_url = '/events'

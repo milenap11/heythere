@@ -93,6 +93,7 @@ class Event(models.Model):
 
 class Employee(models.Model):
     employee_name = models.CharField(max_length=100)
+    employee_email = models.CharField(max_length=255)
     department = models.CharField(max_length=100)
     position = models.CharField(max_length=100)
     salary = models.DecimalField(max_digits=9, decimal_places=2)
