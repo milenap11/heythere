@@ -5,15 +5,15 @@
 <div class="container">
   <div class="card">
     <div class="card-content">
-      <span class="card-title">{{ object.employee_name }}</span>
-        <p>Status: {{ employee.department }}</p>
-        <p>Employee: {{ employee.position }}</p>
-        <p>Start Date: {{ employee.position }}</p>
-        <p>End Date: {{ employee.position }}</p>
+      <span class="card-title">{{ employee.employee_name }}</span>
+      <p>Test: {{ pto_request.employee }}</p>
+      <p>Status: {{ pto_request.status }}</p>
+      <p>Start Date: {{ pto_request.start_date }}</p>
+      <p>End Date: {{ pto_request.end_date }}</p>
     </div>
     <div class="card-action">
-    <a href="#">Edit</a>
-    <a href="#">Delete</a>
+      <a href="{% url 'pto_requests_update' pto_request.id %}">Edit</a>
+      <a href="{% url 'pto_requests_delete' pto_request.id %}">Delete</a>
     </div>
   </div>
 </div>

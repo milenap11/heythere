@@ -100,6 +100,7 @@ class Employee(models.Model):
     birthdate = models.DateField()
     manager_id = models.IntegerField(default=0)
     attending_events = models.ManyToManyField(Event)
+    # pto_requested = models.ForeignKey(PTO_request, on_delete=models.CASCADE)
     user = models.OneToOneField(
         User,
         on_delete=models.CASCADE,
@@ -121,10 +122,17 @@ class PTO_request(models.Model):
     )
     start_date = models.DateField()
     end_date = models.DateField()
-    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    employee = models.OneToOneField(
+        Employee,
+        on_delete=models.CASCADE,
+        null=True
+    )
 
     def __str__(self):
         return f"STATUS {self.get_status_display()}: {self.employee} asked for time off from {self.start_date} to {self.end_date}"
+    
+    def get_absolute_url(self):
+        return reverse('pto_requests_detail', kwargs={'pto_request_id': self.id})
     
     class Meta:
         ordering: ['-start_date']

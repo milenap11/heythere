@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}  
 <br>
-<div class="center"> <a class="waves-effect waves-light btn indigo darken-1" href="{% url 'employees_create' %}">Add PTO Request</a></div>
+<div class="center"> <a class="waves-effect waves-light btn indigo darken-1" href="{% url 'pto_requests_create' %}">Add PTO Request</a></div>
 <br>
 <h3 class="container section">PTO Requests</h3>
 {% for pto_request in pto_requests %}
@@ -9,12 +9,13 @@
   <div class="card">
       <div class="card-content">
         <span class="card-title">PTO request for {{ pto_request.employee_name }}</span>
+        <p>Test: {{ pto_request.employee }}</p>
         <p>Status: {{ pto_request.status }}</p>
         <p>Start Date: {{ pto_request.start_date }}</p>
         <p>End Date: {{ pto_request.end_date }}</p>
       </div>
       <div class="card-action">
-      <a href="#">View</a>
+        <a href="{% url 'pto_requests_detail' pto_request.id %}">View</a>
       </div>
   </div>
 </div>

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    {% if object %}
+        <h3>Edit <span class="teal-text">{{object.employee_name}}</span></h3>
+    {% else %}
+        <h3>Add PTO Request</h3>
+    {% endif %}
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        <table>
+        {{ form.as_table }}
+        </table>
+        <br>
+        <div class="card-action">
+        <input type="submit" value="Submit!" class="btn indigo darken-1">
+        </div>
+    </form>
+</div>    
+{% endblock %}

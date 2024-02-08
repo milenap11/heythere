@@ -38,7 +38,7 @@
           <li><a class="dropdown-trigger" href="https://slack.com/workspace-signin" data-target="dropdown-menu">My Tools<i class="material-icons right">arrow_drop_down</i></a></li>
           <li><a href="{% url 'events_index' %}">Events</a></li>
           <li><a href="{% url 'index' %}">Employees</a></li>
-          <li><a href="{% url 'pto_request_index' %}">PTO Request</a></li>
+          <li><a href="{% url 'pto_requests_index' %}">PTO Request</a></li>
           <li>
             <form method="POST" action="{% url 'logout' %}">
               {% csrf_token %}
