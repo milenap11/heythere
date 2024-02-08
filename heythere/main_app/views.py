@@ -14,10 +14,12 @@ from django.contrib.auth.models import User
 def home(request):
   # Include an .html file extension - unlike when rendering EJS templates
   events = Event.objects.all()
-  if not request.user.is_anonymous:
-    current_user = Employee.objects.get(employee_email=request.user.email)
+  if request.user.is_superuser:
+      current_user = 'superuser'
+  elif not request.user.is_anonymous:
+      current_user = Employee.objects.get(employee_email=request.user.email)
   else:
-    current_user = 'guest'
+      current_user = 'guest'
   return render(request, 'home.html', {
     'events': events,
     'current_user': current_user

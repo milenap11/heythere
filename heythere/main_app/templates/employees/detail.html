@@ -25,9 +25,13 @@
       {% endif %}
     </div>
     <div class="card-action">
-      <!-- need to update this section so that current user can only edit their info -->
-      <a href="{% url 'employees_update' employee.id %}">Edit</a>
-      <a href="{% url 'employees_delete' employee.id %}">Delete</a>
+      {% if employee.employee_email == current_user.employee_email or current_user.employee_name == manager.employee_name %}
+        <a href="{% url 'employees_update' employee.id %}">Edit</a>
+      {% endif %}
+      {% if current_user.employee_name == manager.employee_name %}
+        <p>Welcome, manager. You may edit or delete this employee.</p>
+        <a href="{% url 'employees_delete' employee.id %}">Delete</a>
+      {% endif %}
     </div>
   </div>
 </div>
