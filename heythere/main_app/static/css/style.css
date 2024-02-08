@@ -5,6 +5,10 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
+.brand-logo {
+  margin-left: 1rem;
+}
+
 main {
   flex: 1 0 auto;
 }
@@ -14,9 +18,6 @@ footer.page-footer {
   text-align: right;
 }
 
-.brand-logo {
-  margin-left: 1rem;
-}
 
 /* main.card {
   border-radius: 5px;
