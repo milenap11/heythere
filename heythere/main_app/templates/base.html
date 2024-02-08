@@ -18,41 +18,53 @@
 
 </head>
 <body class="indigo lighten-5">
-  <header class="navbar-fixed">
-    <nav>
-      <div class="nav-wrapper grey darken-3">
-        <ul>
-          <li><a href="{% url 'home' %}" class="left brand-logo"><img src="/static/assets/logo.png">&nbsp;&nbsp;</a></li>
+
+<header>
+  <div class="navbar-fixed">
+        <!-- Dropdown content -->
+        <ul id="dropdown-menu" class="dropdown-content">
+          <li><a href="https://slack.com/workspace-signin" target="_blank">Slack</a></li>
+          <li><a href="https://zoom.us/signin#/login" target="_blank">Zoom</a></li>
+          <li><a href="https://www.figma.com/login" target="_blank">Figma</a></li>
         </ul>
 
-        <a href="#" data-target="mobile-navbar" class="sidenav-trigger">
-          <i class="material-icons">menu</i>
-        </a>
-
-        <ul class="right">
-          <li>
-            <a class="dropdown-trigger" data-target="dropdown-menu" href="#">
-            My Tools <i class="material-icons right">arrow_drop_down</i>
-            </a>
-          </li>
+    <nav>
+      <div class="nav-wrapper blue-grey darken-4">
+        <!-- Logo -->
+        <a href="{% url 'home' %}" class="brand-logo"><img src="/static/assets/logo.png">&nbsp;&nbsp;</a>
+        
+        <ul id="navbar-items" class="right">
+        {% if user.is_authenticated %}
+          <li><a class="dropdown-trigger" href="https://slack.com/workspace-signin" data-target="dropdown-menu">My Tools<i class="material-icons right">arrow_drop_down</i></a></li>
           <li><a href="{% url 'events_index' %}">Events</a></li>
           <li><a href="{% url 'index' %}">Employees</a></li>
           <li><a href="{% url 'pto_request_index' %}">PTO Request</a></li>
+          <li>
+            <form method="POST" action="{% url 'logout' %}">
+              {% csrf_token %}
+              <button type="submit">Log Out</button>
+            </form>
+          </li>
+        {% else %}
+          <li><a href="{% url 'signup' %}">Sign Up</a></li>
+          <li><a href="{% url 'login' %}">Log In</a></li>
+        {% endif %}
         </ul>
 
-        <ul class="dropdown-content" id="dropdown-menu">
-          <li><a href="#">Slack</a></li>
-        </ul>
+       <!-- Mobile side menu -->
+       <a href="#" data-target="mobile-navbar" class="sidenav-trigger">
+        <i class="material-icons">menu</i></a>
 
       </div>
     </nav>
-  </header>
+  </div>
+</header>
   
 <!-- Hamburger menu -->
   <ul id="mobile-navbar" class="sidenav">
     <li>
-      <a class="dropdown-trigger" data-target="dropdown-menu" href="#">
-      My Tools <i class="material-icons right">arrow_drop_down</i>
+      <a href="#!" data-target="dropdown-menu" class="dropdown-trigger">
+        My Tools <i class="material-icons right">arrow_drop_down</i>
       </a>
     </li>
     <li><a href="{% url 'events_index' %}">Events</a></li>
@@ -74,12 +86,19 @@
   {% endblock %}
   </main>
   
-  <footer class="page-footer grey darken-3">
+  <footer class="page-footer blue-grey darken-4">
     <div class="center">All Rights Reserved, &copy; 2024 heythere &nbsp;</div>
   </footer>
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="/static/js/main.js"></script>
+  <!-- <script>
+    $( document ).ready(function(){
+      $(".sidenav").sidenav();
+      $(".dropdown-trigger").dropdown();
+  });
+  </script> -->
  
 </body>
 </html>

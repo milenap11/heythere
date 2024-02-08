@@ -8,13 +8,26 @@
       <span class="card-title">{{ employee.employee_name }}</span>
       <p>Department: {{ employee.department }}</p>
       <p>Position: {{ employee.position }}</p>
+      <p>Email: {{ employee.employee_email }}</p>
       <p>Salary: ${{ employee.salary }}</p>
       <p>Birthdate: {{ employee.birthdate }}</p>
       <p>Manager: {{ manager.employee_name }}</p>
+      <br>
+      <p>Attending events:</p>
+      {% if employee.attending_events.count %}
+        <ul>
+        {% for event in employee.attending_events.all %}
+          <li>{{ event.event_name }}</li>
+        {% endfor %}
+        </ul>
+      {% else %}
+        <p>Not attending any events</p>
+      {% endif %}
     </div>
     <div class="card-action">
-    <a href="{% url 'employees_update' employee.id %}">Edit</a>
-    <a href="{% url 'employees_delete' employee.id %}">Delete</a>
+      <!-- need to update this section so that current user can only edit their info -->
+      <a href="{% url 'employees_update' employee.id %}">Edit</a>
+      <a href="{% url 'employees_delete' employee.id %}">Delete</a>
     </div>
   </div>
 </div>

@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 STATES = (
     ('AL', 'Alabama'),
@@ -92,12 +93,18 @@ class Event(models.Model):
 
 class Employee(models.Model):
     employee_name = models.CharField(max_length=100)
+    employee_email = models.CharField(max_length=255)
     department = models.CharField(max_length=100)
     position = models.CharField(max_length=100)
     salary = models.DecimalField(max_digits=9, decimal_places=2)
     birthdate = models.DateField()
     manager_id = models.IntegerField(default=0)
     attending_events = models.ManyToManyField(Event)
+    user = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+        null=True
+    )
 
     def __str__(self):
         return self.employee_name

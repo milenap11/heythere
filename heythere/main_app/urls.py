@@ -9,11 +9,12 @@ urlpatterns = [
     path('events/<int:pk>/update/', views.EventUpdate.as_view(), name='events_update'),
     path('events/<int:pk>/delete/', views.EventDelete.as_view(), name='events_delete'),
     path('events/seed/', views.events_seed, name='events_seed'),
-    # path('employees/<int:employee_id>/assoc_event/<int:event_id>/', views.assoc_event, name='assoc_event'),
+    path('employees/<int:employee_id>/assoc_event/<int:event_id>/', views.assoc_event, name='assoc_event'),
     path('employees/', views.employees_index, name='index'),
     path('employees/<int:employee_id>/', views.employees_detail, name='detail'),
     path('employees/create/', views.EmployeeCreate.as_view(), name='employees_create'),
     path('employees/<int:pk>/update/', views.EmployeeUpdate.as_view(), name='employees_update'),
     path('employees/<int:pk>/delete/', views.EmployeeDelete.as_view(), name='employees_delete'),
     path('pto_requests/', views.pto_request_index, name='pto_request_index'),
+    path('accounts/signup/', views.signup, name='signup'),
 ]
