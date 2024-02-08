@@ -65,11 +65,11 @@ def events_detail(request, event_id):
 
 # PTO Request index view
 def pto_request_index(request):
-  pto_requests = PTO_request.objects.all()
-  employee = Employee.objects.get(id = pto_requests.employee)
+  # pto_requests = PTO_request.objects.all()
+  # employee = Employee.objects.get(id = pto_requests.employee)
   return render(request, 'pto_request/index.html', {
     'pto_requests': pto_requests,
-    'employee': employee
+    # 'employee': employee
   })
 
 # Employees index view
