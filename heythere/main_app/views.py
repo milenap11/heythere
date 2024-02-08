@@ -74,11 +74,11 @@ def events_seed(request):
   })
 
 # Test pto_request objects
-pto_requests = [
-  {'employee_name': 'Milena', 'status': 'P', 'start_date': '2024-02-07', 'end_date': '2024-2-10', 'employee': 1},
-  {'employee_name': 'Jason', 'status': 'A', 'start_date': '2024-02-08', 'end_date': '2024-02-13', 'employee': 2},
-  {'employee_name': 'Jae', 'status': 'D', 'start_date': '2024-02-10', 'end_date': '2024-02-11', 'employee': 3},
-]
+# pto_requests = [
+#   {'employee_name': 'Milena', 'status': 'P', 'start_date': '2024-02-07', 'end_date': '2024-2-10', 'employee': 1},
+#   {'employee_name': 'Jason', 'status': 'A', 'start_date': '2024-02-08', 'end_date': '2024-02-13', 'employee': 2},
+#   {'employee_name': 'Jae', 'status': 'D', 'start_date': '2024-02-10', 'end_date': '2024-02-11', 'employee': 3},
+# ]
 
 # Events index view
 @login_required
@@ -101,12 +101,26 @@ def events_detail(request, event_id):
 
 # PTO Request index view
 @login_required
-def pto_request_index(request):
-  # pto_requests = PTO_request.objects.all()
+def pto_requests_index(request):
+  current_user = request.user
+  employee = Employee.objects.get(employee_email=current_user.email)
+  pto_requests = PTO_request.objects.all()
   # employee = Employee.objects.get(id = pto_requests.employee)
   return render(request, 'pto_request/index.html', {
     'pto_requests': pto_requests,
-    # 'employee': employee
+    'employee': employee
+  })
+
+# PTO Request detail view
+@login_required
+def pto_requests_detail(request, pto_request_id):
+  current_user = request.user
+  employee = Employee.objects.get(employee_email=current_user.email)
+  # employee = Employee.objects.get(id = pto_requests.employee)
+  pto_request = PTO_request.objects.get(id=pto_request_id)
+  return render(request, 'pto_request/detail.html', { 
+    'pto_request': pto_request,
+    'employee': employee
   })
 
 # Employees index view
@@ -156,3 +170,18 @@ class EventUpdate(LoginRequiredMixin, UpdateView):
 class EventDelete(LoginRequiredMixin, DeleteView):
   model = Event
   success_url = '/events'
+
+class PTOCreate(LoginRequiredMixin, CreateView):
+  model = PTO_request
+  fields = ['employee_name', 'start_date', 'end_date']
+  def form_valid(self, form):
+    form.instance.user = self.request.user
+    return super().form_valid(form)
+
+class PTOUpdate(LoginRequiredMixin, UpdateView):
+  model = PTO_request
+  fields = ['employee_name', 'start_date', 'end_date']
+
+class PTODelete(LoginRequiredMixin, DeleteView):
+  model = PTO_request
+  success_url = '/pto_requests'

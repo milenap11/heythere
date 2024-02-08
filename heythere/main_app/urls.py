@@ -15,6 +15,10 @@ urlpatterns = [
     path('employees/create/', views.EmployeeCreate.as_view(), name='employees_create'),
     path('employees/<int:pk>/update/', views.EmployeeUpdate.as_view(), name='employees_update'),
     path('employees/<int:pk>/delete/', views.EmployeeDelete.as_view(), name='employees_delete'),
-    path('pto_requests/', views.pto_request_index, name='pto_request_index'),
+    path('pto_requests/', views.pto_requests_index, name='pto_requests_index'),
+    path('pto_requests/<int:pto_request_id>', views.pto_requests_detail, name='pto_requests_detail'),
+    path('pto_requests/create/', views.PTOCreate.as_view(), name='pto_requests_create'),
+    path('pto_requests/<int:pk>/update/', views.PTOUpdate.as_view(), name='pto_requests_update'),
+    path('pto_requests/<int:pk>/delete/', views.PTODelete.as_view(), name='pto_requests_delete'),
     path('accounts/signup/', views.signup, name='signup'),
 ]
