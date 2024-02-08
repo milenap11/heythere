@@ -91,9 +91,12 @@ def events_index(request):
 # Events detail view
 @login_required
 def events_detail(request, event_id):
+  current_user = request.user
+  employee = Employee.objects.get(employee_email=current_user.email)
   event = Event.objects.get(id=event_id)
   return render(request, 'events/detail.html', { 
     'event': event, 
+    'employee': employee
   })
 
 # PTO Request index view
@@ -121,9 +124,9 @@ def employees_detail(request, employee_id):
     'manager': manager 
   })
 
-# def assoc_event(request, employee_id, event_id):
-#   Employee.objects.get(id=employee_id).attending_events.add(event_id)
-#   return redirect('events_detail', event_id=event_id)
+def assoc_event(request, employee_id, event_id):
+  Employee.objects.get(id=employee_id).attending_events.add(event_id)
+  return redirect('events_detail', event_id=event_id)
 
 class EmployeeCreate(LoginRequiredMixin, CreateView):
   model = Employee
