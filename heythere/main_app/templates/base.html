@@ -35,6 +35,7 @@
         
         <ul id="navbar-items" class="right">
         {% if user.is_authenticated %}
+          <p>Logged in as {{current_user.employee_name}}</p>
           <li><a class="dropdown-trigger" href="https://slack.com/workspace-signin" data-target="dropdown-menu">My Tools<i class="material-icons right">arrow_drop_down</i></a></li>
           <li><a href="{% url 'events_index' %}">Events</a></li>
           <li><a href="{% url 'index' %}">Employees</a></li>

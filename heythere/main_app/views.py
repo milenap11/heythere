@@ -14,8 +14,13 @@ from django.contrib.auth.models import User
 def home(request):
   # Include an .html file extension - unlike when rendering EJS templates
   events = Event.objects.all()
+  if not request.user.is_anonymous:
+    current_user = Employee.objects.get(employee_email=request.user.email)
+  else:
+    current_user = 'guest'
   return render(request, 'home.html', {
-    'events': events
+    'events': events,
+    'current_user': current_user
   })
 
 def signup(request):
@@ -83,61 +88,62 @@ def events_seed(request):
 # Events index view
 @login_required
 def events_index(request):
+  current_user = Employee.objects.get(employee_email=request.user.email)
   events = Event.objects.all()
   return render(request, 'events/index.html', {
-    'events': events
+    'events': events,
+    'current_user': current_user
   })
 
 # Events detail view
 @login_required
 def events_detail(request, event_id):
-  current_user = request.user
-  employee = Employee.objects.get(employee_email=current_user.email)
+  current_user = Employee.objects.get(employee_email=request.user.email)
   event = Event.objects.get(id=event_id)
   return render(request, 'events/detail.html', { 
     'event': event, 
-    'employee': employee
+    'current_user': current_user
   })
 
 # PTO Request index view
 @login_required
 def pto_requests_index(request):
-  current_user = request.user
-  employee = Employee.objects.get(employee_email=current_user.email)
+  current_user = Employee.objects.get(employee_email=request.user.email)
   pto_requests = PTO_request.objects.all()
-  # employee = Employee.objects.get(id = pto_requests.employee)
   return render(request, 'pto_request/index.html', {
     'pto_requests': pto_requests,
-    'employee': employee
+    'current_user': current_user
   })
 
 # PTO Request detail view
 @login_required
 def pto_requests_detail(request, pto_request_id):
-  current_user = request.user
-  employee = Employee.objects.get(employee_email=current_user.email)
-  # employee = Employee.objects.get(id = pto_requests.employee)
+  current_user = Employee.objects.get(employee_email=request.user.email)
   pto_request = PTO_request.objects.get(id=pto_request_id)
   return render(request, 'pto_request/detail.html', { 
     'pto_request': pto_request,
-    'employee': employee
+    'current_user': current_user
   })
 
 # Employees index view
 @login_required
 def employees_index(request):
+  current_user = Employee.objects.get(employee_email=request.user.email)
   employees = Employee.objects.all()
   return render(request, 'employees/index.html', {
-    'employees': employees
+    'employees': employees,
+    'current_user': current_user
   })
 
 @login_required
 def employees_detail(request, employee_id):
+  current_user = Employee.objects.get(employee_email=request.user.email)
   employee = Employee.objects.get(id=employee_id)
   manager = Employee.objects.get(id=employee.manager_id)
   return render(request, 'employees/detail.html', { 
     'employee': employee,
-    'manager': manager 
+    'manager': manager,
+    'current_user': current_user
   })
 
 def assoc_event(request, employee_id, event_id):

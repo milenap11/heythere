@@ -29,8 +29,7 @@
     </div>
   </div>
   <div class="card-action">
-    <!-- need to update this section to only enable attendance once per employee -->
-    <form action="{% url 'assoc_event' employee.id event.id %}" method="POST">
+    <form action="{% url 'assoc_event' current_user.id event.id %}" method="POST">
       {% csrf_token %}
       <button type="submit" class="btn">Attend this Event</button>
     </form>
