@@ -3,9 +3,9 @@
 {% block content %}
 <div class="container">
     {% if object %}
-        <h3>Edit <span class="teal-text">{{object.employee_name}}</span></h3>
+        <h4>Edit <span class="teal-text">{{object.employee_name}}</span></h4>
     {% else %}
-        <h3>Add PTO Request</h3>
+        <h4>Add PTO Request</h4>
     {% endif %}
 
     <form action="" method="POST">
@@ -17,6 +17,7 @@
         <div class="card-action">
         <input type="submit" value="Submit!" class="btn indigo darken-1">
         </div>
+        <br>
     </form>
 </div>    
 {% endblock %}
