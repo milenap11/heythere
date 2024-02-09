@@ -1,1 +1,1 @@
-web: gunicorn heythere.wsgl
+web: gunicorn heythere.wsgi
