@@ -32,10 +32,13 @@
       <div class="nav-wrapper blue-grey darken-4">
         <!-- Logo -->
         <a href="{% url 'home' %}" class="brand-logo"><img src="/static/assets/logo.png">&nbsp;&nbsp;</a>
-        
         <ul id="navbar-items" class="right hide-on-med-and-down">
         {% if user.is_authenticated %}
-          <li>Logged in as: {{current_user.employee_name}} </li>
+          {% if not user.is_superuser %}
+            <li>Logged in as: {{current_user.employee_name}} </li>
+          {% else %}
+            <li>Logged in as site admin {{user}}</li>
+          {% endif %}
           <li><a class="dropdown-trigger" href="#" data-target="dropdown-menu">My Tools<i class="material-icons right">arrow_drop_down</i></a></li>
           <li><a href="{% url 'events_index' %}">Events</a></li>
           <li><a href="{% url 'index' %}">Employees</a></li>

@@ -12,7 +12,6 @@ from django.contrib.auth.models import User
 
 # Home view
 def home(request):
-  # Include an .html file extension - unlike when rendering EJS templates
   events = Event.objects.all()
   if request.user.is_superuser:
       current_user = 'superuser'
@@ -32,12 +31,14 @@ def signup(request):
     employees = Employee.objects.all()
     users = User.objects.all()
     email_list = []
+    useremail_list = []
     username_list = []
     for user in users:
       username_list.append(user)
+      useremail_list.append(user.email)
     for employee in employees:
       email_list.append(employee.employee_email)
-    if form.is_valid() and request.POST['email'] in email_list and request.POST['username'] not in username_list:
+    if form.is_valid() and request.POST['email'] in email_list and request.POST['email'] not in useremail_list and request.POST['username'] not in username_list:
       user = form.save()
       login(request, user)
       return redirect('index')
@@ -130,7 +131,10 @@ def pto_requests_detail(request, pto_request_id):
 # Employees index view
 @login_required
 def employees_index(request):
-  current_user = Employee.objects.get(employee_email=request.user.email)
+  if request.user.is_superuser:
+    current_user = 'superuser'
+  else:
+    current_user = Employee.objects.get(employee_email=request.user.email)
   employees = Employee.objects.all()
   return render(request, 'employees/index.html', {
     'employees': employees,
@@ -139,7 +143,10 @@ def employees_index(request):
 
 @login_required
 def employees_detail(request, employee_id):
-  current_user = Employee.objects.get(employee_email=request.user.email)
+  if request.user.is_superuser:
+    current_user = 'superuser'
+  else:
+    current_user = Employee.objects.get(employee_email=request.user.email)
   employee = Employee.objects.get(id=employee_id)
   manager = Employee.objects.get(id=employee.manager_id)
   return render(request, 'employees/detail.html', { 
@@ -152,9 +159,16 @@ def assoc_event(request, employee_id, event_id):
   Employee.objects.get(id=employee_id).attending_events.add(event_id)
   return redirect('events_detail', event_id=event_id)
 
+def unassoc_event(request, employee_id, event_id):
+  temp = Employee.objects.get(id=employee_id)
+  print(temp.attending_events)
+  print(event_id)
+  #.remove(event_id)
+  return redirect('detail', employee_id=employee_id)
+
 class EmployeeCreate(LoginRequiredMixin, CreateView):
   model = Employee
-  fields = ['employee_name', 'department', 'position', 'salary', 'birthdate', 'manager_id']
+  fields = ['employee_name', 'employee_email', 'department', 'position', 'salary', 'birthdate', 'manager_id']
   def form_valid(self, form):
     form.instance.user = self.request.user
     return super().form_valid(form)

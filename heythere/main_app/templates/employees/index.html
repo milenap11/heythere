@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
 <br>
-<div class="center"> <a class="waves-effect waves-light btn indigo darken-1" href="{% url 'employees_create' %}">Add Employee</a></div>
+{% if user.is_superuser %}
+  <div class="center"> <a class="waves-effect waves-light btn indigo darken-1" href="{% url 'employees_create' %}">Add Employee</a></div>
+{% endif %}
 <br>
 <h3 class="container section">Employees List</h3>
 {% for employee in employees %}
