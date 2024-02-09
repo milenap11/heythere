@@ -33,16 +33,16 @@
         <!-- Logo -->
         <a href="{% url 'home' %}" class="brand-logo"><img src="/static/assets/logo.png">&nbsp;&nbsp;</a>
         <ul id="navbar-items" class="right hide-on-med-and-down">
-        {% if user.is_authenticated %}
-          {% if not user.is_superuser %}
-            <li>Logged in as: {{current_user.employee_name}} </li>
-          {% else %}
-            <li>Logged in as site admin {{user}}</li>
-          {% endif %}
           <li><a class="dropdown-trigger" href="#" data-target="dropdown-menu">My Tools<i class="material-icons right">arrow_drop_down</i></a></li>
           <li><a href="{% url 'events_index' %}">Events</a></li>
           <li><a href="{% url 'index' %}">Employees</a></li>
           <li><a href="{% url 'pto_requests_index' %}">PTO Request</a></li>
+        {% if user.is_authenticated %}
+          {% if not user.is_superuser %}
+            <li class="blue-text">Hello {{current_user.employee_name}}! </li>
+          {% else %}
+            <li class="blue-text">Hello {{user}}!</li>
+          {% endif %}
           <li>
             <a href="{% url 'logout' %}"><i class="active material-icons right">exit_to_app</i>Log Out</a></li>
         {% else %}
@@ -62,21 +62,27 @@
   
 <!-- Hamburger menu -->
   <ul id="mobile-navbar" class="sidenav">
-    {% if user.is_authenticated %}
+          
           <li><a class="dropdown-trigger" href="#" data-target="dropdown-menu">My Tools<i class="material-icons right">arrow_drop_down</i></a></li>
           <li><a href="{% url 'events_index' %}">Events</a></li>
           <li><a href="{% url 'index' %}">Employees</a></li>
           <li><a href="{% url 'pto_requests_index' %}">PTO Request</a></li>
           <li class="active">
             <a href="{% url 'logout' %}"><i class="material-icons right">exit_to_app</i>Log Out</a></li>
-          <form method="post" action="{% url 'logout' %}">
+        {% if user.is_authenticated %}
+            {% if not user.is_superuser %}
+            <li class="blue-text center">Hello {{current_user.employee_name}}!</li>
+            {% else %}
+            <li class="blue-text center">Hello {{user}}!</li>
+            {% endif %}
+          <!-- <form method="post" action="{% url 'logout' %}">
             {% csrf_token %}
             <button type="submit">logout</button>
-          </form>
-    {% else %}
+          </form> -->
+        {% else %}
           <li><a href="{% url 'signup' %}">Sign Up</a></li>
           <li class="active"><a href="{% url 'login' %}"><i class="material-icons right">person</i>Log In</a></li>
-    {% endif %}
+        {% endif %}
   </ul>
   
   <!-- <div class="row">
