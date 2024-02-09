@@ -29,19 +29,22 @@
     </div>
   </div>
   <div class="card-action">
-    {% if current_user not in event.employee_set.all %}
-      <form action="{% url 'assoc_event' current_user.id event.id %}" method="POST">
-        {% csrf_token %}
-        <button type="submit" class="btn">Attend this Event</button>
-      </form>
+    {% if not user.is_superuser %}
+      {% if current_user not in event.employee_set.all %}
+        <form action="{% url 'assoc_event' current_user.id event.id %}" method="POST">
+          {% csrf_token %}
+          <button type="submit" class="btn">Attend this Event</button>
+        </form>
+      {% else %}
+        <form action="{% url 'unassoc_event' current_user.id event.id %}" method="POST">
+          {% csrf_token %}
+          <button type="submit" class="btn">Cancel my Attendance</button>
+        </form>    
+      {% endif %}
     {% else %}
-      <form action="{% url 'unassoc_event' current_user.id event.id %}" method="POST">
-        {% csrf_token %}
-        <button type="submit" class="btn">Cancel my Attendance</button>
-      </form>    
+      <a href="{% url 'events_update' event.id %}">Edit Event</a>
+      <a href="{% url 'events_delete' event.id %}">Delete Event</a>
     {% endif %}
-    <a href="{% url 'events_update' event.id %}">Edit Event</a>
-    <a href="{% url 'events_delete' event.id %}">Delete Event</a>
   </div>
 </div>
 

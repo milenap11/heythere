@@ -91,7 +91,10 @@ def events_seed(request):
 # Events index view
 @login_required
 def events_index(request):
-  current_user = Employee.objects.get(employee_email=request.user.email)
+  if request.user.is_superuser:
+    current_user = 'superuser'
+  else:
+    current_user = Employee.objects.get(employee_email=request.user.email)
   events = Event.objects.all()
   return render(request, 'events/index.html', {
     'events': events,
@@ -101,7 +104,10 @@ def events_index(request):
 # Events detail view
 @login_required
 def events_detail(request, event_id):
-  current_user = Employee.objects.get(employee_email=request.user.email)
+  if request.user.is_superuser:
+    current_user = 'superuser'
+  else:
+    current_user = Employee.objects.get(employee_email=request.user.email)
   event = Event.objects.get(id=event_id)
   return render(request, 'events/detail.html', { 
     'event': event, 
@@ -111,7 +117,10 @@ def events_detail(request, event_id):
 # PTO Request index view
 @login_required
 def pto_requests_index(request):
-  current_user = Employee.objects.get(employee_email=request.user.email)
+  if request.user.is_superuser:
+    current_user = 'superuser'
+  else:
+    current_user = Employee.objects.get(employee_email=request.user.email)
   pto_requests = PTO_request.objects.all()
   return render(request, 'pto_request/index.html', {
     'pto_requests': pto_requests,
@@ -121,7 +130,10 @@ def pto_requests_index(request):
 # PTO Request detail view
 @login_required
 def pto_requests_detail(request, pto_request_id):
-  current_user = Employee.objects.get(employee_email=request.user.email)
+  if request.user.is_superuser:
+    current_user = 'superuser'
+  else:
+    current_user = Employee.objects.get(employee_email=request.user.email)
   pto_request = PTO_request.objects.get(id=pto_request_id)
   return render(request, 'pto_request/detail.html', { 
     'pto_request': pto_request,
