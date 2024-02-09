@@ -39,7 +39,7 @@
           <li><a href="{% url 'pto_requests_index' %}">PTO Request</a></li>
         {% if user.is_authenticated %}
           {% if not user.is_superuser %}
-            <li class="blue-text">Hello {{current_user.employee_name}}! </li>
+            <li><a href="{% url 'detail' current_user.id %}" class="blue-text">Hello {{current_user.employee_name}}!</a></li>
           {% else %}
             <li class="blue-text">Hello {{user}}!</li>
           {% endif %}
