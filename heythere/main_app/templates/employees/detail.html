@@ -25,10 +25,10 @@
       {% endif %}
     </div>
     <div class="card-action">
-      {% if employee.employee_email == current_user.employee_email or current_user.employee_name == manager.employee_name %}
+      {% if employee.employee_email == user.email or current_user.employee_name == manager.employee_name or user.is_superuser %}
         <a href="{% url 'employees_update' employee.id %}">Edit</a>
       {% endif %}
-      {% if current_user.employee_name == manager.employee_name %}
+      {% if current_user.employee_name == manager.employee_name and current_user.employee_name != employee.employee_name or user.is_superuser%}
         <p>Welcome, manager. You may edit or delete this employee.</p>
         <a href="{% url 'employees_delete' employee.id %}">Delete</a>
       {% endif %}
