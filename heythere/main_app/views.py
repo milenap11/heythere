@@ -172,11 +172,8 @@ def assoc_event(request, employee_id, event_id):
   return redirect('events_detail', event_id=event_id)
 
 def unassoc_event(request, employee_id, event_id):
-  temp = Employee.objects.get(id=employee_id)
-  print(temp.attending_events)
-  print(event_id)
-  #.remove(event_id)
-  return redirect('detail', employee_id=employee_id)
+  Event.objects.get(id=event_id).employee_set.remove(employee_id)
+  return redirect('events_detail', event_id=event_id)
 
 class EmployeeCreate(LoginRequiredMixin, CreateView):
   model = Employee
