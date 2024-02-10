@@ -92,8 +92,15 @@ class Event(models.Model):
         ordering = ['-event_localdate']
 
 class Employee(models.Model):
+    id = models.AutoField(
+        primary_key=True,
+        unique=True    
+    )
     employee_name = models.CharField(max_length=100)
-    employee_email = models.CharField(max_length=255)
+    employee_email = models.CharField(
+        max_length=255,
+        unique=True
+    )
     department = models.CharField(max_length=100)
     position = models.CharField(max_length=100)
     salary = models.DecimalField(max_digits=9, decimal_places=2)
@@ -104,11 +111,12 @@ class Employee(models.Model):
     user = models.OneToOneField(
         User,
         on_delete=models.CASCADE,
-        null=True
+        null=True,
+        unique=True
     )
 
     def __str__(self):
-        return self.employee_name
+        return f"{self.employee_name}, user_id: {self.user}"
     
     def get_absolute_url(self):
         return reverse('detail', kwargs={'employee_id': self.id})
@@ -135,7 +143,7 @@ class PTO_request(models.Model):
         return reverse('pto_requests_detail', kwargs={'pto_request_id': self.id})
     
     class Meta:
-        ordering: ['-start_date']
+        ordering = ['-start_date']
 
 class Memo(models.Model):
     date = models.DateField(

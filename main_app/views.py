@@ -9,6 +9,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
+from django.db import connection
 
 # Home view
 def home(request):
@@ -178,9 +179,6 @@ def unassoc_event(request, employee_id, event_id):
 class EmployeeCreate(LoginRequiredMixin, CreateView):
   model = Employee
   fields = ['employee_name', 'employee_email', 'department', 'position', 'salary', 'birthdate', 'manager_id']
-  def form_valid(self, form):
-    form.instance.user = self.request.user
-    return super().form_valid(form)
 
 class EmployeeUpdate(LoginRequiredMixin, UpdateView):
   model = Employee
