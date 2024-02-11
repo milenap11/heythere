@@ -17,8 +17,14 @@
       <p>{{ event.event_venue }}</p>
       <p>{{ event.event_address }}</p>
       <p>{{ event.event_city }}, {{ event.event_state }} {{ event.event_zip }}</p>
-      <!-- lat/long hopefully to be used for google maps later -->
-      <!-- <p>{{ event.event_latitude }}, {{ event.event_longitude }}</p> -->
+      <br>
+      <iframe
+      width="450"
+      height="250"
+      frameborder="0" style="border:0"
+      referrerpolicy="no-referrer-when-downgrade"
+      src="https://www.google.com/maps/embed/v1/place?key= AIzaSyDdwlwZ1lufnj3okOOPi4qY38RWUTH5ndg&q={{venue}},{{event.event_city}},{{event.event_state}}"
+      allowfullscreen>
       <br>
       <p style="text-decoration-line: underline;"><strong>DATE & TIME</strong></p>
       <p>{{ event.event_localdate }}</p>

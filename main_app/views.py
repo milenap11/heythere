@@ -82,13 +82,6 @@ def events_seed(request):
     'events': events
   })
 
-# Test pto_request objects
-# pto_requests = [
-#   {'employee_name': 'Milena', 'status': 'P', 'start_date': '2024-02-07', 'end_date': '2024-2-10', 'employee': 1},
-#   {'employee_name': 'Jason', 'status': 'A', 'start_date': '2024-02-08', 'end_date': '2024-02-13', 'employee': 2},
-#   {'employee_name': 'Jae', 'status': 'D', 'start_date': '2024-02-10', 'end_date': '2024-02-11', 'employee': 3},
-# ]
-
 # Events index view
 @login_required
 def events_index(request):
@@ -102,6 +95,19 @@ def events_index(request):
     'current_user': current_user
   })
 
+# Events search view
+@login_required
+def search_events(request):
+  if request.method == 'POST':
+    searched = request.POST['searched']
+    events = Event.objects.filter(event_name__icontains=searched)
+    return render(request, 'events/search_events.html', {
+      'searched': searched,
+      'events': events,
+    })
+  else:
+    return render(request, 'events/search_events.html')
+
 # Events detail view
 @login_required
 def events_detail(request, event_id):
@@ -110,9 +116,12 @@ def events_detail(request, event_id):
   else:
     current_user = Employee.objects.get(employee_email=request.user.email)
   event = Event.objects.get(id=event_id)
+  venue = event.event_venue
+  venue = '+'.join(venue.split())
   return render(request, 'events/detail.html', { 
     'event': event, 
-    'current_user': current_user
+    'current_user': current_user,
+    'venue': venue,
   })
 
 # PTO Request index view
