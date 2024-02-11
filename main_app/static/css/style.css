@@ -28,3 +28,16 @@ footer.page-footer {
   border-top-right-radius: 5px;
 } */
 
+.logout-btn {
+  background-color: white !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+.logout-btn2 {
+  background-color: rgb(40, 50, 55);
+  color: white;
+  border: none !important;
+  padding: 0 !important;
+  margin-right: 20px;
+}

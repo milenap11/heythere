@@ -47,7 +47,7 @@
           <li>
            <form method="post" action="{% url 'logout' %}">
             {% csrf_token %}
-            <button type="submit"><i class="active material-icons right">exit_to_app</i>Log Out</button>
+            <button class='logout-btn2' type="submit">Log Out</button>
           </form>  
           </li>
         {% else %}
@@ -81,7 +81,7 @@
     <li class="center">
      <form method="post" action="{% url 'logout' %}">
       {% csrf_token %}
-      <button type="submit"><i class="active material-icons right">exit_to_app</i>Log Out</button>
+      <button class='logout-btn' type="submit"><i class="active material-icons right">exit_to_app</i>Log Out</button>
     </form>  
     </li>
   {% else %}
