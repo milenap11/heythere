@@ -132,16 +132,18 @@ Heythere is a one-stop app for employees to conveniently access all their work-r
   <p>6.	Type: psql</p>
   <p>7.	Type: \c <your newly created database name></p>
   <p>8.	Create the employee table:
-  <p>CREATE TABLE main_app_employee \(</p>
-  <p>Id SERIAL PRIMARY KEY</p>
-  <p>employee_name VARCHAR(100),</p>
-  <p>Department VARCHAR(100),</p>
-  <p>Position VARCHAR(100),</p>
-  <p>Salary DECIMAL(9, 2),</p>
-  <p>Birthdate DATE,</p>
-  <p>manager_id INTEGER,</p>
-  <p>user_id SET DEFAULT NULL,</p>
-  <p>employee_email VARCHAR(255);</p>
+  <pre>
+    CREATE TABLE main_app_employee \(
+    Id SERIAL PRIMARY KEY
+    employee_name VARCHAR(100),
+    Department VARCHAR(100),
+    Position VARCHAR(100),
+    Salary DECIMAL(9, 2),
+    Birthdate DATE,
+    manager_id INTEGER,
+    user_id SET DEFAULT NULL,
+    employee_email VARCHAR(255);
+  </pre>
   <p>9.	Type: \copy main_app_employee FROM ‘/<path to your CSV file>/<your CSV file name>.csv’ WITH (FORMAT csv);</p>
   <p>10.	Go to neon.tech and make a new account. Alternatively, you may log in with an existing Google or GitHub account.</p>
   <p>11.	Once logged in, ensure that you stay logged in as long as you will use this database.</p>
