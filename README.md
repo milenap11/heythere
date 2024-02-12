@@ -1,4 +1,3 @@
-# heythere
 ![image](https://github.com/milenap11/heythere/assets/152853230/1fa14153-d2ca-4805-8e37-b28516203e70)
 
 ##### Created by Milena Pupillo, Jae Ahn-Benton, Xing Yu (Jason) Ma
@@ -144,7 +143,7 @@ employee_email VARCHAR(255)
         
 ## :triangular_flag_on_post: Hurdles
 - [ ] Getting the dropdown menu to work in the nav bar
-- [ ] 
+- [ ] Since it wasn’t realistic to pull any publicly available online information of private employee information of any given company, we used a mock data of 52 made-up employees, then used Django’s “loaddata” feature to store the data internally in a file named db.json. We also imported the same data into PSQL using the COPY command. The largest hurdle we had to overcome was that when we are doing CRUD operations on the employee model, Django seems to create objects/instances of the model within the project, and not in the PSQL database itself. So when we were each testing out the CRUD operations locally on our own computers, it resulted in primary key conflicts/duplicates each time we pulled/pushed our code from GitHub. The solution was to manually reset the key sequence using PSQL commands, which solved the problem each time, but we were not able to hard code it so that it would do it automatically. We are thinking that in the future, it would be best to leave the testing to one developer, so that each of our databases remain consistent and without conflicts.
 
 ## :dart: Next Steps
 - [ ] Replace home page in pre-logged area
