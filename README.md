@@ -108,17 +108,6 @@ Heythere is a one-stop app for employees to conveniently access all their work-r
 
 <details>
   <summary>Prerequisites</summary>
-  <p align="center">Your employee data should be on an Excel spreadsheet, ready to be imported into a CSV file. Please ensure that each employee’s information should be spread out across a row, with their information in this order:</p>
-  <p>1.	Employee ID</p>
-  <p>2.	Employee name (First Name Last Name) - no commas or special characters in between</p>
-  <p>3.	Department the employee belongs in</p>
-  <p>4.	Employee’s position</p>
-  <p></p>
-  <p align="center"><img src="https://github.com/milenap11/heythere/assets/152853230/9245ab83-2fec-4916-9160-991672a8ba90" width="800"></p>
-</details>
-
-<details>
-  <summary>Prerequisites</summary>
   <p>Your employee data should be on an Excel spreadsheet, ready to be imported into a CSV file. Please ensure that each employee’s information should be spread out across a row, with their information in this order:</p>
   <p>1.	Employee ID</p>
   <p>2.	Employee name (First Name Last Name) - no commas or special characters in between</p>
@@ -132,7 +121,7 @@ Heythere is a one-stop app for employees to conveniently access all their work-r
 </details>
 
 <details>
-  <summary>Installation:</summary>
+  <summary>Installation</summary>
   <p>1.	Download PostgreSQL from https://postgresapp.com/downloads.html</p>
   <p>2.	Choose your OS and download, then move the newly downloaded application to the Applications folder.</p>
   <p>3.	Click “Initialize” to create a new server.</p>
