@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br>
+<div class="container">
+  <h3>Delete Employee</h3>
+  <br>
+  <h4>Are you sure you want to delete <span class="deep-purple-text">{{ object.employee_name }}</span>?</h4>
+  
+  <form action="" method="POST">
+    {% csrf_token %}
+    
+  <div class="section">
+    <input type="submit" value="Yes - Delete!" class="btn indigo darken-1">
+    <a href="{% url 'detail' employee.id %}">Cancel</a>
+  </form>
+  </div>
+</div>
+{% endblock %}

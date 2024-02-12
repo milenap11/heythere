@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block content %}  
+<br>
+<div class="center"> <a class="waves-effect waves-light btn indigo darken-1" href="{% url 'events_create' %}">Add Event</a></div>
+<br>
+
+{% if searched %}
+    <h4 class="container section">You Searched For: {{ searched }} </h4>
+    <div class="container">
+        <nav>
+            <div class="nav-wrapper grey lighten-5">
+              <form method=POST action="{% url 'search_events' %}">
+                {% csrf_token %}
+                <div class="input-field">
+                  <input id="search" type="search" placeholder="Search Events" aria-label="Search" name="searched" required>
+                  <!-- <label class="label-icon" for="search"><i class="grey-text darken-4 material-icons">search</i></label> -->
+                  <button id="search_button" class="btn btn-outline-secondary" type="submit">Search</button>
+                  <i class="material-icons">close</i>
+                </div>
+              </form>
+            </div>
+          </nav>
+    </div>
+    <br>
+    <br>
+    <br>
+    {% for event in events %}
+    <div class="container">
+    <div class="card">
+        <div class="hoverable">
+        <div class="card-image">
+            <img src="{{ event.event_img_url }}">
+            <a href="#" class="halfway-fab btn-floating pink pulse">
+            <i class="material-icons">favorite</i>
+            </a>
+        </div>
+        <div class="card-content">  
+            <span class="card-title">{{ event.event_name }}</span>
+            <br>
+            <p style="text-decoration-line: underline;"><strong>LOCATION</strong></p>
+            <p>{{ event.event_venue }}</p>
+            <p>{{ event.event_city }}, {{ event.event_state }}</p>
+            <br>
+            <p style="text-decoration-line: underline;"><strong>DATE & TIME</strong></p>
+            <p>{{ event.event_localdate }}</p>
+            <p>{{ event.event_localtime }}</p>
+            <p>Local timezone: {{ event.event_timezone }}</p>
+            <br>
+            <p style="color: rgb(185, 184, 184)">Co-workers are attending!</p>
+
+        
+        </div>
+        <div class="card-action">
+            <a href="{% url 'events_detail' event.id %}">View</a>
+        </div>
+        </div>
+    </div> 
+    </div>
+    {% endfor %}
+{% else %}
+    <h4 class="container section">No Input Found</h4>
+    <div class="container">
+        <nav>
+            <div class="nav-wrapper grey lighten-5">
+              <form method=POST action="{% url 'search_events' %}">
+                {% csrf_token %}
+                <div class="input-field">
+                  <input id="search" type="search" placeholder="Search Events" aria-label="Search" name="searched" required>
+                  <!-- <label class="label-icon" for="search"><i class="grey-text darken-4 material-icons">search</i></label> -->
+                  <button id="search_button" class="btn btn-outline-secondary" type="submit">Search</button>
+                  <i class="material-icons">close</i>
+                </div>
+              </form>
+            </div>
+          </nav>
+    </div>
+    <br>
+    <br>
+    <br>
+{% endif %}
+
+{% endblock %}

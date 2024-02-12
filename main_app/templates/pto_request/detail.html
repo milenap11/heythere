@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h4 class="container section">PTO Request Details</h4>
+<div class="container">
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">{{ pto_request.employee.employee_name }}</span>
+      <p>Status: {{ pto_request.get_status_display }}</p>
+      <p>Start Date: {{ pto_request.start_date }}</p>
+      <p>End Date: {{ pto_request.end_date }}</p>
+    </div>
+    {% if user.is_superuser%}
+      <p>Welcome, manager. You may approve, deny, or delete this PTO request.</p>
+      <div class="card-action">
+        <a href="{% url 'pto_requests_update' pto_request.id %}">Edit</a>
+        <a href="{% url 'pto_requests_delete' pto_request.id %}">Delete</a>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}

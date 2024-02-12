@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h4 class="container section">Employee Details</h4>
+<div class="container">
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">{{ employee.employee_name }}</span>
+      <p>Department: {{ employee.department }}</p>
+      <p>Position: {{ employee.position }}</p>
+      <p>Email: {{ employee.employee_email }}</p>
+      <p>Salary: ${{ employee.salary }}</p>
+      <p>Birthdate: {{ employee.birthdate }}</p>
+      <p>Manager: {{ manager.employee_name }}</p>
+      <br>
+      <p>Attending events:</p>
+      {% if employee.attending_events.count %}
+        <ul>
+        {% for event in employee.attending_events.all %}
+          <li>{{ event.event_name }}</li>
+        {% endfor %}
+        </ul>
+      {% else %}
+        <p>Not attending any events</p>
+      {% endif %}
+    </div>
+    <div class="card-action">
+      {% if employee.employee_email == user.email or current_user.employee_name == manager.employee_name or user.is_superuser %}
+        <a href="{% url 'employees_update' employee.id %}">Edit</a>
+      {% endif %}
+      {% if current_user.employee_name == manager.employee_name and current_user.employee_name != employee.employee_name or user.is_superuser%}
+        <p>Welcome, manager. You may edit or delete this employee.</p>
+        <a href="{% url 'employees_delete' employee.id %}">Delete</a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

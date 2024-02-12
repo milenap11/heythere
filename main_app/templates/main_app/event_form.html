@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    {% if object %}
+    <h4>Edit <span class="deep-purple-text">{{object.event_name}}</span></h4>
+    {% else %}
+    <h4>Add Event</h4>
+    {% endif %}
+  <form action="" method="POST">
+    {% csrf_token %}
+    <table>
+      {{ form }}
+    </table>
+    <br>
+    <div class="card-action">
+    <input type="submit" value="Submit!" class="btn indigo darken-1">
+    </div>
+    <br>
+  </form>
+</div>  
+<script>
+    const idEventState = document.getElementById('id_event_state');
+    idEventState.style.display = 'block';
+</script>
+{% endblock %}

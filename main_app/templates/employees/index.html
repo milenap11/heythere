@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<br>
+{% if user.is_superuser %}
+  <div class="center"> <a class="waves-effect waves-light btn indigo darken-1" href="{% url 'employees_create' %}">Add Employee</a></div>
+{% endif %}
+<br>
+<h4 class="container section">Employees List</h4>
+{% for employee in employees %}
+<div class="container">
+  <div class="card">
+      <div class="card-content">
+        <span class="card-title">{{ employee.employee_name }}</span>
+        <p>Department: {{ employee.department }}</p>
+        <p>Position: {{ employee.position }}</p>
+      </div>
+      <div class="card-action">
+      <a href="{% url 'detail' employee.id %}">View</a>
+      </div>
+  </div>
+</div>
+{% endfor %}
+
+{% endblock %}
