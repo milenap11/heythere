@@ -96,8 +96,6 @@ Heythere is a one-stop app for employees to conveniently access all their work-r
 
 ## :heart_eyes_cat: Installation Instructions
 
-### A set of step-by-step guidelines that help users properly install and set up your application
-
 Prerequisites:
 
 Your employee data should be on an Excel spreadsheet, ready to be imported into a CSV file. Please ensure that each employee’s information should be spread out across a row, with their information in this order:
@@ -144,6 +142,8 @@ employee_email VARCHAR(255)
 ## :triangular_flag_on_post: Hurdles
 - [ ] Getting the dropdown menu to work in the nav bar
 - [ ] Since it wasn’t realistic to pull any publicly available online information of private employee information of any given company, we used a mock data of 52 made-up employees, then used Django’s “loaddata” feature to store the data internally in a file named db.json. We also imported the same data into PSQL using the COPY command. The largest hurdle we had to overcome was that when we are doing CRUD operations on the employee model, Django seems to create objects/instances of the model within the project, and not in the PSQL database itself. So when we were each testing out the CRUD operations locally on our own computers, it resulted in primary key conflicts/duplicates each time we pulled/pushed our code from GitHub. The solution was to manually reset the key sequence using PSQL commands, which solved the problem each time, but we were not able to hard code it so that it would do it automatically. We are thinking that in the future, it would be best to leave the testing to one developer, so that each of our databases remain consistent and without conflicts.
+- [ ] Designing and implementing the ERD to accurately match the nature of our project. We ran into many issues with Foreign Keys, Many to many relationships, etc.
+- [ ] Learning and utilizing materialize, since the format is strict unlike customized CSS which is more flexible
 
 ## :dart: Next Steps
 - [ ] Replace home page in pre-logged area
