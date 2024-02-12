@@ -5,10 +5,10 @@
 ## :rocket: Description
 
 Heythere is a one-stop app for employees to conveniently access all their work-related needs, such as:
-- View company’s announcements, events, documents
-- Find everyday tools to perform duties
-- Submit and keep track of PTO (paid time-off) requests
-- On the employer side, admins will also have a convenient way of managing the database of their employees, events, as well as approving time off.
+- [ ] View company’s announcements, events, documents
+- [ ] Find everyday tools to perform duties
+- [ ] Submit and keep track of PTO (paid time-off) requests
+- [ ] On the employer side, admins will also have a convenient way of managing the database of their employees, events, as well as approving time off.
 
 ## :link: Links
 
