@@ -32,6 +32,7 @@ footer.page-footer {
   background-color: white !important;
   border: none !important;
   padding: 0 !important;
+  cursor: pointer;
 }
 
 .logout-btn2 {
@@ -39,5 +40,7 @@ footer.page-footer {
   color: white;
   border: none !important;
   padding: 0 !important;
+  margin-left: 10px;
   margin-right: 20px;
+  cursor: pointer;
 }
