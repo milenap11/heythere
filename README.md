@@ -94,7 +94,7 @@ Heythere is a one-stop app for employees to conveniently access all their work-r
 ![markdown](https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white)
 - NeonDB
 
-## :link: User Stories
+## :100: User Stories
 - AAU (as a user), I want to be able to login, so that I can use the features of the site
 - As an employee, I want to be able to request PTOs.
 - As an employer, I want to be able to edit employee info.
@@ -106,48 +106,49 @@ Heythere is a one-stop app for employees to conveniently access all their work-r
 
 ## :heart_eyes_cat: Installation Instructions
 
-Prerequisites:
+<details>
+  <summary>Prerequisites</summary>
+  <p>Your employee data should be on an Excel spreadsheet, ready to be imported into a CSV file. Please ensure that each employee’s information should be spread out across a row, with their information in this order:</p>
+  <p>1.	Employee ID</p>
+  <p>2.	Employee name (First Name Last Name) - no commas or special characters in between</p>
+  <p>3.	Department the employee belongs in</p>
+  <p>4.	Employee’s position</p>
+  <p>5.	Employee’s salary (only type in the number itself, no dollar signs or commas)</p>
+  <p>6.	Employee’s birthdate (in YYYY-MM-DD format)</p>
+  <p>7.	Employee’s manager’s ID (This ID should match the above employee ID of the manager)</p>
+  <p>8.	Blank field (representing each employee’s User ID, to be filled out automatically by the application later, as employees make their accounts)</p>
+  <p>9.	Employee’s email address</p>
+</details>
 
-Your employee data should be on an Excel spreadsheet, ready to be imported into a CSV file. Please ensure that each employee’s information should be spread out across a row, with their information in this order:
-1.	Employee ID
-2.	Employee name (First Name Last Name) - no commas or special characters in between
-3.	Department the employee belongs in
-4.	Employee’s position
-5.	Employee’s salary (only type in the number itself, no dollar signs or commas)
-6.	Employee’s birthdate (in YYYY-MM-DD format)
-7.	Employee’s manager’s ID (This ID should match the above employee ID of the manager)
-8.	Blank field (representing each employee’s User ID, to be filled out automatically by the application later, as employees make their accounts)
-9.	Employee’s email address
-
-Installation:
-
-1.	Download PostgreSQL from https://postgresapp.com/downloads.html
-2.	Choose your OS and download, then move the newly downloaded application to the Applications folder.
-3.	Click “Initialize” to create a new server.
-4.	To start the server, click “start”.
-5.	Open your terminal and type: createdb <your desired database name>
-6.	Type: psql
-7.	Type: \c <your newly created database name>
-8.	Create the employee table:
-CREATE TABLE main_app_employee (
-Id SERIAL PRIMAY KEY
-employee_name VARCHAR(100),
-Department VARCHAR(100),
-Position VARCHAR(100)
-Salary DECIMAL(9, 2)
-Birthdate DATE
-manager_id INTEGER
-user_id SET DEFAULT NULL
-employee_email VARCHAR(255)
-9.	Type: \copy main_app_employee FROM ‘/<path to your CSV file>/<your CSV file name>.csv’ WITH (FORMAT csv);
-10.	Go to neon.tech and make a new account. Alternatively, you may log in with an existing Google or GitHub account.
-11.	Once logged in, ensure that you stay logged in as long as you will use this database.
-12.	Open your terminal and input: psql -h pg.neon.tech
-13.	On your browser, go to https://heythere-hr-f3d27d8a0e61.herokuapp.com/
-14.	If you are a CEO or a president of the company, ask to the site administrator to make a superuser/admin account on your behalf.
-15.	If you are a manager of a department or a regular employee, you should be able to create an account using your email address.
-16.	You should now be able to see the imported database under the “employees” tab. If you are a superuser, you will be able to add, edit, or delete any employee, event, or PTO request. If you are a manager, you will be able to add, edit, or delete any employee who is under your supervision in your department. You will be able to edit your own information, but you will not be able to delete yourself. If you are a regular employee, you will be able to edit your own information only. As a manager or an employee, you may choose to attend any event that the employer creates on this page. You may also cancel your attendance at any time. As an employee, you may request time off by clicking “Add PTO Request” button. Once submitted, it will be automatically visible on the PTO Requests section of the website, with a “pending” status. Only the superuser/employer will be able to approve, deny, or delete this request.
-
+<details>
+  <summary>Installation:</summary>
+  <p>1.	Download PostgreSQL from https://postgresapp.com/downloads.html</p>
+  <p>2.	Choose your OS and download, then move the newly downloaded application to the Applications folder.</p>
+  <p>3.	Click “Initialize” to create a new server.</p>
+  <p>4.	To start the server, click “start”.</p>
+  <p>5.	Open your terminal and type: createdb <your desired database name></p>
+  <p>6.	Type: psql</p>
+  <p>7.	Type: \c <your newly created database name></p>
+  <p>8.	Create the employee table:
+  <p>CREATE TABLE main_app_employee \(</p>
+  <p>Id SERIAL PRIMARY KEY</p>
+  <p>employee_name VARCHAR(100),</p>
+  <p>Department VARCHAR(100),</p>
+  <p>Position VARCHAR(100),</p>
+  <p>Salary DECIMAL(9, 2),</p>
+  <p>Birthdate DATE,</p>
+  <p>manager_id INTEGER,</p>
+  <p>user_id SET DEFAULT NULL,</p>
+  <p>employee_email VARCHAR(255);</p>
+  <p>9.	Type: \copy main_app_employee FROM ‘/<path to your CSV file>/<your CSV file name>.csv’ WITH (FORMAT csv);</p>
+  <p>10.	Go to neon.tech and make a new account. Alternatively, you may log in with an existing Google or GitHub account.</p>
+  <p>11.	Once logged in, ensure that you stay logged in as long as you will use this database.</p>
+  <p>12.	Open your terminal and input: psql -h pg.neon.tech</p>
+  <p>13.	On your browser, go to https://heythere-hr-f3d27d8a0e61.herokuapp.com/</p>
+  <p>14.	If you are a CEO or a president of the company, ask to the site administrator to make a superuser/admin account on your behalf.</p>
+  <p>15.	If you are a manager of a department or a regular employee, you should be able to create an account using your email address.</p>
+  <p>16.	You should now be able to see the imported database under the “employees” tab. If you are a superuser, you will be able to add, edit, or delete any employee, event, or PTO request. If you are a manager, you will be able to add, edit, or delete any employee who is under your supervision in your department. You will be able to edit your own information, but you will not be able to delete yourself. If you are a regular employee, you will be able to edit your own information only. As a manager or an employee, you may choose to attend any event that the employer creates on this page. You may also cancel your attendance at any time. As an employee, you may request time off by clicking “Add PTO Request” button. Once submitted, it will be automatically visible on the PTO Requests section of the website, with a “pending” status. Only the superuser/employer will be able to approve, deny, or delete this request.</p>
+</details>
         
 ## :triangular_flag_on_post: Hurdles
 - [ ] Getting the dropdown menu to work in the nav bar
