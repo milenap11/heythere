@@ -92,7 +92,7 @@ Heythere is a one-stop app for employees to conveniently access all their work-r
 ![css3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![javascript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
 ![markdown](https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white)
-- NeonDB
+- [ ] NeonDB
 
 ## :100: User Stories
 - [ ] AAU (as a user), I want to be able to login, so that I can use the features of the site
