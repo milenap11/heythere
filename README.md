@@ -1,6 +1,6 @@
 ![image](https://github.com/milenap11/heythere/assets/152853230/1fa14153-d2ca-4805-8e37-b28516203e70)
 
-##### Created by Milena Pupillo, Jae Ahn-Benton, Xing Yu (Jason) Ma
+##### Created by Milena Pupillo, Jae Ahn-Benton and Xing Yu (Jason) Ma
 
 ## :rocket: Description
 
