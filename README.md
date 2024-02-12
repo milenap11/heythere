@@ -96,13 +96,15 @@ Heythere is a one-stop app for employees to conveniently access all their work-r
 
 ## :100: User Stories
 - [ ] AAU (as a user), I want to be able to login, so that I can use the features of the site
-- [ ] As an employee, I want to be able to request PTOs.
-- [ ] As an employer, I want to be able to edit employee info.
 - [ ] AAU, I want to enjoy responsive design across all my devices (Laptop, smartphone, etc.)
-- [ ] As an employer, I want to be able to view the list of employees and their information (such as salary, role, etc.)
-- [ ] AAU, I want to be able to edit my user info by performing CRUD operations.
 - [ ] AAU, I want to view news & events.
 - [ ] AAU, I want to be able to edit news & event info.
+- [ ] AAU, I want to be able to edit my user info by performing CRUD operations.
+- [ ] As an employee, I want to be able to request PTOs.
+- [ ] As an employer, I want to be able to approve/deny PTOs.
+- [ ] As an employer, I want to be able to edit employee info.
+- [ ] As an employer, I want to be able to view the list of employees and their information (such as salary, role, etc.)
+
 
 ## :heart_eyes_cat: Installation Instructions
 
