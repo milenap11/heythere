@@ -164,3 +164,4 @@ Heythere is a one-stop app for employees to conveniently access all their work-r
 - [ ] Search filter for employees
 - [ ] Display multiple event cards on the same row
 - [ ] Memos
+- [ ] Themes/Dark Mode
