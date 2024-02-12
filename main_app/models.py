@@ -107,7 +107,6 @@ class Employee(models.Model):
     birthdate = models.DateField()
     manager_id = models.IntegerField(default=0)
     attending_events = models.ManyToManyField(Event)
-    # pto_requested = models.ForeignKey(PTO_request, on_delete=models.CASCADE)
     user = models.OneToOneField(
         User,
         on_delete=models.CASCADE,
