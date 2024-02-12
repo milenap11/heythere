@@ -133,7 +133,7 @@ Heythere is a one-stop app for employees to conveniently access all their work-r
   <p>7.	Type: \c <your newly created database name></p>
   <p>8.	Create the employee table:
   <pre>
-    CREATE TABLE main_app_employee \(
+    CREATE TABLE main_app_employee (
     Id SERIAL PRIMARY KEY
     employee_name VARCHAR(100),
     Department VARCHAR(100),
@@ -142,7 +142,8 @@ Heythere is a one-stop app for employees to conveniently access all their work-r
     Birthdate DATE,
     manager_id INTEGER,
     user_id SET DEFAULT NULL,
-    employee_email VARCHAR(255);
+    employee_email VARCHAR(255)
+    );
   </pre>
   <p>9.	Type: \copy main_app_employee FROM ‘/<path to your CSV file>/<your CSV file name>.csv’ WITH (FORMAT csv);</p>
   <p>10.	Go to neon.tech and make a new account. Alternatively, you may log in with an existing Google or GitHub account.</p>
